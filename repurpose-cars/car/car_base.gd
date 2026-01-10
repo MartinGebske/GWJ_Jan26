@@ -4,10 +4,31 @@ extends VehicleBody3D
 @export var max_steering_angle := 0.9
 @export var steering_speed := 10
 @export var engine_power := 300
+@export var brake_power := 1000
+@export var max_speed := 20.0
 
 func _physics_process(delta: float) -> void:
-	steering = move_toward(steering, Input.get_axis("right", "left") * max_steering_angle, delta * steering_speed)
-	engine_force = Input.get_axis("backward","forward") * engine_power
+	steering = move_toward(
+		steering,
+		Input.get_axis("right", "left") * max_steering_angle,
+		delta * steering_speed
+	)
+
+	var throttle_input = Input.get_axis("backward", "forward")
+	var is_braking = Input.is_action_pressed("brake")
+
+	if is_braking:
+		brake = brake_power
+		engine_force = 0
+	else:
+		brake = 0
+		engine_force = throttle_input * engine_power
+
+
+	var current_speed = linear_velocity.length()
+	if current_speed > max_speed:
+		linear_velocity = linear_velocity.normalized() * max_speed
+
 
 # MORE REALISTIC?
 #@export var max_rpm = 450

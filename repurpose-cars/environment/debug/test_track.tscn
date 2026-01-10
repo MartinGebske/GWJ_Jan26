@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://bh43jilfdc0d0"]
+
+[ext_resource type="PackedScene" uid="uid://dp1vvehbwnvha" path="res://car/car_base.tscn" id="1_4ym64"]
+[ext_resource type="Texture2D" uid="uid://doswww5ngxcmt" path="res://environment/debug/HJ1K5.png" id="2_rbqoj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oe6td"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_4ym64"]
+sky_material = SubResource("ProceduralSkyMaterial_oe6td")
+
+[sub_resource type="Environment" id="Environment_rbqoj"]
+background_mode = 2
+sky = SubResource("Sky_4ym64")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4ym64"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rbqoj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4ym64"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ch1wq"]
+albedo_texture = ExtResource("2_rbqoj")
+uv1_scale = Vector3(5, 5, 1)
+
+[node name="testTrack" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rbqoj")
+
+[node name="floor" type="StaticBody3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, -50, 0)
+disable_mode = 1
+physics_material_override = SubResource("PhysicsMaterial_4ym64")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
+shape = SubResource("BoxShape3D_rbqoj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
+mesh = SubResource("BoxMesh_4ym64")
+surface_material_override/0 = SubResource("StandardMaterial3D_ch1wq")
+
+[node name="CarBase" parent="." instance=ExtResource("1_4ym64")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9329386, 0)
+mass = 40.0
+engine_power = 1000
+
+[editable path="CarBase"]

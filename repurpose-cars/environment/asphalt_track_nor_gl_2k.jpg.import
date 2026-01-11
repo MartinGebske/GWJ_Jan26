@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bp2jbebd3lkvb"
-path.s3tc="res://.godot/imported/world_asphalt_rot.png-50cb11d8f563757e300bbf83272fb701.s3tc.ctex"
+uid="uid://bev8hv0lfe36e"
+path.s3tc="res://.godot/imported/asphalt_track_nor_gl_2k.jpg-5b05ad6d31d8d1c1a09bead08975805a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "767f400206695b186a41120156df3eef"
-}
 
 [deps]
 
-source_file="res://environment/world_asphalt_rot.png"
-dest_files=["res://.godot/imported/world_asphalt_rot.png-50cb11d8f563757e300bbf83272fb701.s3tc.ctex"]
+source_file="res://environment/asphalt_track_nor_gl_2k.jpg"
+dest_files=["res://.godot/imported/asphalt_track_nor_gl_2k.jpg-5b05ad6d31d8d1c1a09bead08975805a.s3tc.ctex"]
 
 [params]
 
@@ -25,12 +22,12 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://environment/asphalt_track_nor_gl_2k.jpg"
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2

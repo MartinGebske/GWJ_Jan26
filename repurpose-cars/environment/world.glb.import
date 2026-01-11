@@ -38,6 +38,18 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={
+"materials": {
+"World": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://environment/materials/level_world.tres",
+"use_external/path": "uid://bryipuls23ln4"
+},
+"road": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://environment/materials/level_road.tres",
+"use_external/path": "uid://b1vj4w6a83pk5"
+}
+},
 "nodes": {
 "PATH:RoadCurve1": {
 "generate/physics": true

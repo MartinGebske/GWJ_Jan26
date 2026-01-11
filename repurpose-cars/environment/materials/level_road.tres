@@ -1,0 +1,20 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://b1vj4w6a83pk5"]
+
+[ext_resource type="Texture2D" uid="uid://bnmb7de6tshxw" path="res://environment/asphalt_track_diff_2k.jpg" id="1_0rn4u"]
+[ext_resource type="Texture2D" uid="uid://bmla18t68ibbh" path="res://environment/asphalt_track_arm_2k.jpg" id="2_v3gxj"]
+[ext_resource type="Texture2D" uid="uid://bev8hv0lfe36e" path="res://environment/asphalt_track_nor_gl_2k.jpg" id="3_dx61q"]
+
+[resource]
+albedo_texture = ExtResource("1_0rn4u")
+metallic = 0.1
+metallic_specular = 0.28
+metallic_texture = ExtResource("2_v3gxj")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_v3gxj")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_scale = 0.3
+normal_texture = ExtResource("3_dx61q")
+ao_enabled = true
+ao_light_affect = 0.4
+ao_texture = ExtResource("2_v3gxj")

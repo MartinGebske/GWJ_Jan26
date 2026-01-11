@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjyqu2rl8ctpv"]
+
+[ext_resource type="PackedScene" uid="uid://b64l1sqk2cacw" path="res://environment/world.glb" id="1_hjwoo"]
+[ext_resource type="Script" uid="uid://fjrhdw0sigx2" path="res://environment/level.gd" id="1_vfqff"]
+
+[node name="level" type="Node3D"]
+script = ExtResource("1_vfqff")
+
+[node name="worldmesh" parent="." instance=ExtResource("1_hjwoo")]
+
+[node name="StartTrack_1" type="Node3D" parent="."]
+transform = Transform3D(0.64087397, 0.39924547, 0.6556552, -0.68449533, 0.6838343, 0.2526594, -0.34748644, -0.61071575, 0.71153325, -164.82399, 74.004005, 189.98604)
+
+[node name="StartTrack_2" type="Node3D" parent="."]
+transform = Transform3D(0.6629898, 0.67973655, 0.31369233, -0.535249, 0.723359, -0.43618846, -0.5234053, 0.1212849, 0.84340787, -237.58809, 81.630936, 23.759699)
+
+[node name="StartTrack_3" type="Node3D" parent="."]
+transform = Transform3D(-0.62874436, -0.2544094, -0.7348172, -0.10342282, 0.9639301, -0.24523969, 0.77070373, -0.07819622, -0.63237727, 160.17776, 74.89051, -171.76717)
+
+[node name="StartTrack_4" type="Node3D" parent="."]
+transform = Transform3D(-0.1562696, -0.40462124, 0.9010335, -0.072393514, 0.91447943, 0.3981038, -0.9850579, -0.0030174712, -0.17219725, 114.13941, 144.93005, 155.8138)

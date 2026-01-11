@@ -84,7 +84,7 @@ brake_power = 1
 max_speed = 100.0
 
 [node name="Chassis" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.5356596, 0)
 mesh = SubResource("ArrayMesh_effuq")
 skeleton = NodePath("")
 
@@ -125,7 +125,7 @@ mesh = SubResource("ArrayMesh_4okdk")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011138916, 0, 0.26696777)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011138916, 0.5356596, 0.26696777)
 shape = SubResource("BoxShape3D_1q3e4")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]

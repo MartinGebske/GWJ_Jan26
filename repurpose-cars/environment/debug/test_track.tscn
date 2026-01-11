@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bh43jilfdc0d0"]
+[gd_scene load_steps=6 format=3 uid="uid://bh43jilfdc0d0"]
 
 [ext_resource type="PackedScene" uid="uid://dp1vvehbwnvha" path="res://car/car_base.tscn" id="1_4ym64"]
-[ext_resource type="Texture2D" uid="uid://doswww5ngxcmt" path="res://environment/debug/HJ1K5.png" id="2_rbqoj"]
+[ext_resource type="PackedScene" uid="uid://bjyqu2rl8ctpv" path="res://environment/level.tscn" id="2_rbqoj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oe6td"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -16,17 +16,6 @@ sky = SubResource("Sky_4ym64")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4ym64"]
-friction = 0.7
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_rbqoj"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_4ym64"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ch1wq"]
-albedo_texture = ExtResource("2_rbqoj")
-uv1_scale = Vector3(5, 5, 1)
-
 [node name="testTrack" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -36,20 +25,10 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rbqoj")
 
-[node name="floor" type="StaticBody3D" parent="."]
-transform = Transform3D(100, 0, 0, 0, 98.47319, -17.40779, 0, 17.40779, 98.47319, 0, -52.566284, 11.420929)
-disable_mode = 1
-physics_material_override = SubResource("PhysicsMaterial_4ym64")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
-shape = SubResource("BoxShape3D_rbqoj")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
-transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("BoxMesh_4ym64")
-surface_material_override/0 = SubResource("StandardMaterial3D_ch1wq")
-
 [node name="CarBase" parent="." instance=ExtResource("1_4ym64")]
-transform = Transform3D(1, 0, 0, 0, 0.9848077, -0.17364818, 0, 0.17364818, 0.9848077, 0, 6.281915, -26.699718)
-mass = 40.0
-engine_power = 200
+transform = Transform3D(-0.65812683, 0.30003837, 0.6905406, -0.4089607, 0.6276124, -0.66246057, -0.63215524, -0.7183869, -0.29034472, -163.49614, 71.91126, 188.51079)
+mass = 400.0
+engine_power = 8000
+
+[node name="level" parent="." node_paths=PackedStringArray("car") instance=ExtResource("2_rbqoj")]
+car = NodePath("../CarBase")

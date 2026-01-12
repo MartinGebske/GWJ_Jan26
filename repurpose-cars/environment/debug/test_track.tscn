@@ -27,7 +27,7 @@ shadow_normal_bias = 1.0
 environment = SubResource("Environment_rbqoj")
 
 [node name="CarBase" parent="." instance=ExtResource("1_4ym64")]
-transform = Transform3D(-0.65812683, 0.30003837, 0.6905406, -0.4089607, 0.6276124, -0.66246057, -0.63215524, -0.7183869, -0.29034472, -163.49614, 71.91126, 188.51079)
+transform = Transform3D(-0.64501125, 0.19766068, 0.73816735, -0.4288534, 0.70588404, -0.5637487, -0.6324913, -0.68018967, -0.37053585, -163.39423, 72.2752, 188.1601)
 mass = 400.0
 engine_power = 8000
 

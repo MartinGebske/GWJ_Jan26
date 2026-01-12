@@ -6,6 +6,8 @@ extends VehicleBody3D
 @export var brake_power := 1000
 @export var max_speed := 20.0
 
+@onready var wheelholder: Node3D = $SteeringwheelBase/Wheelholder
+
 func _physics_process(delta: float) -> void:
 	is_on_road()
 	if Input.is_action_just_pressed("reset_car"):
@@ -15,6 +17,7 @@ func _physics_process(delta: float) -> void:
 		Input.get_axis("right", "left") * max_steering_angle,
 		delta * steering_speed
 	)
+	wheelholder.rotation_degrees.y = steering * 80.0
 
 	var throttle_input = Input.get_axis("backward", "forward")
 	var is_braking = Input.is_action_pressed("brake")

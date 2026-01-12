@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=20 format=3 uid="uid://cqu3w7xusur0v"]
+[gd_resource type="VisualShader" load_steps=21 format=3 uid="uid://cqu3w7xusur0v"]
 
 [ext_resource type="Texture2D" uid="uid://dn0v3fn1gv5iv" path="res://environment/materials/rock/rock_ground_diff_2k.png" id="1_mhu7x"]
 [ext_resource type="Texture2D" uid="uid://ccw6s44gtaikn" path="res://environment/materials/rock/rock_ground_nor_gl_2k.jpg" id="1_wgpcm"]
@@ -21,6 +21,10 @@ op_type = 3
 
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_eoncx"]
 parameter_name = "ColorParameter"
+
+[sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_wgpcm"]
+default_input_values = [1, Vector2(10, 10), 2, Vector2(0, 0)]
+function = 1
 
 [sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_wgpcm"]
 default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
@@ -88,9 +92,15 @@ void fragment() {
 	vec4 n_out15p0 = ColorParameter;
 
 
+// UVFunc:16
+	vec2 n_in16p1 = vec2(10.00000, 10.00000);
+	vec2 n_in16p2 = vec2(0.00000, 0.00000);
+	vec2 n_out16p0 = (UV - n_in16p2) * n_in16p1 + n_in16p2;
+
+
 	vec4 n_out3p0;
 // Texture2D:3
-	n_out3p0 = texture(RockTexture, UV);
+	n_out3p0 = texture(RockTexture, n_out16p0);
 
 
 // Mix:14
@@ -99,7 +109,7 @@ void fragment() {
 
 
 // Texture2D:4
-	vec4 n_out4p0 = texture(tex_frg_4, UV);
+	vec4 n_out4p0 = texture(tex_frg_4, n_out16p0);
 
 
 // VaryingGetter:5
@@ -155,7 +165,7 @@ nodes/fragment/2/position = Vector2(-186.6158, 189.04956)
 nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_q7q1q")
 nodes/fragment/3/position = Vector2(-900, -60)
 nodes/fragment/4/node = SubResource("VisualShaderNodeTexture_eoncx")
-nodes/fragment/4/position = Vector2(-560, 280)
+nodes/fragment/4/position = Vector2(-780, 180)
 nodes/fragment/5/node = SubResource("VisualShaderNodeVaryingGetter_wfgwy")
 nodes/fragment/5/position = Vector2(-1220, 640)
 nodes/fragment/6/node = SubResource("VisualShaderNodeClamp_w1mj6")
@@ -171,9 +181,11 @@ nodes/fragment/10/position = Vector2(20, 480)
 nodes/fragment/11/node = SubResource("VisualShaderNodeTexture_wfgwy")
 nodes/fragment/11/position = Vector2(-480, 820)
 nodes/fragment/12/node = SubResource("VisualShaderNodeTexture2DParameter_wgpcm")
-nodes/fragment/12/position = Vector2(-1260, -180)
+nodes/fragment/12/position = Vector2(-1340, 40)
 nodes/fragment/14/node = SubResource("VisualShaderNodeMix_q7q1q")
 nodes/fragment/14/position = Vector2(-360, 0)
 nodes/fragment/15/node = SubResource("VisualShaderNodeColorParameter_eoncx")
 nodes/fragment/15/position = Vector2(-820, -300)
-nodes/fragment/connections = PackedInt32Array(4, 0, 2, 1, 2, 0, 0, 0, 5, 2, 7, 0, 7, 0, 8, 0, 8, 0, 6, 0, 2, 0, 10, 2, 6, 0, 2, 2, 9, 0, 10, 0, 10, 0, 0, 8, 12, 0, 3, 2, 3, 0, 14, 1, 14, 0, 2, 0, 15, 0, 14, 0)
+nodes/fragment/16/node = SubResource("VisualShaderNodeUVFunc_wgpcm")
+nodes/fragment/16/position = Vector2(-1280, -160)
+nodes/fragment/connections = PackedInt32Array(4, 0, 2, 1, 2, 0, 0, 0, 5, 2, 7, 0, 7, 0, 8, 0, 8, 0, 6, 0, 2, 0, 10, 2, 6, 0, 2, 2, 9, 0, 10, 0, 10, 0, 0, 8, 12, 0, 3, 2, 3, 0, 14, 1, 14, 0, 2, 0, 15, 0, 14, 0, 16, 0, 3, 0, 16, 0, 4, 0)

@@ -1,40 +1,7 @@
-[gd_scene load_steps=10 format=4 uid="uid://dp1vvehbwnvha"]
+[gd_scene load_steps=8 format=4 uid="uid://dp1vvehbwnvha"]
 
 [ext_resource type="Script" uid="uid://bjgwrauat2wb4" path="res://car/car_base.gd" id="1_1q3e4"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pmh13"]
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_i45gl"]
-_surfaces = [{
-"aabb": AABB(-2, -0.5, -1, 4.5297737, 1.3701408, 2),
-"format": 34896613377,
-"index_count": 204,
-"index_data": PackedByteArray("EgAHABMAEgAFAAcABQACAAcAAgATAAcABQASABQABQAVAAIABQAUABUAFQABAAIAFQAAAAEAAgAWABMAAQAWAAIAFQAEAAAAFQAUAAQAAAADAAEAAQADABYAAAAEAAMAFgAXABMAAwAYABYAFgAYABcABAAKAAMAAwAKABgABAALAAoAFAALAAQAGQATABcAGQASABMAEgAaABQAEgAZABoAFAAaAAsAGwAZABcAGQAcABoAGQAbABwAGgANAAsAGgAcAA0ACwANAAwACwAMAAoAGwAXAB0AGAAdABcACgAeABgAGAAeAB0ACgAMAB4AHwAbAB0AHgAgAB0AHwAdACAADAAhAB4AHgAhACAACQAfACAADAAQACEADQAQAAwAIQAIACAACQAgAAgAEAAGACEAIQAGAAgAIgAJAAgAHwAJACIAIgAIAAYAGwAfACMAHwAiACMAGwAjABwAEAARAAYADgAiAAYAIwAiAA4ADgAGABEAHAAjAA8AIwAOAA8ADwAOABEADwARABAAHAAPAA0ADQAPABAA"),
-"lods": [0.12615661, PackedByteArray("AAABAAIAAAADAAEAAQADAAIAAAAEAAMABQAAAAIABQAEAAAAAwAGAAIABQACAAcAAgAGAAcABQAHAAgABgAIAAcACQAFAAgACQAIAAYABAAKAAMAAwAKAAYABAALAAoABAAFAAsACwAMAAoACgAMAAYABQANAAsACwANAAwABQAJAA4ADgAJAAYABQAPAA0ABQAOAA8ADQAQAAwADAAQAAYADQAPABAADgAGABEADwAOABEAEAARAAYADwARABAA")],
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 36,
-"vertex_data": PackedByteArray("DuIAAAAAAAAO4ta6AAAAANsi1roAAAAADuLWujIzAAAO4gAAMjMAAAAAAAAAAAAA2yLWuv//AAAAAP//AAAAAAAA/////wAAAAAAAP//AAD//9a6ZWYAAP//AABlZgAA///WupmZAAD//wAAmZkAAA7iAAD//wAADuIAAMzMAAAO4ta6zMwAAA7i1rr//wAAAAAAADIzAAAAAP//MjMAANsiAAAyMwAA2yIAAAAAAADbIta6MjMAAAAA//9lZgAAeSfWumVmAAAAAAAAZWYAAHknAABlZgAAAAAAAJmZAAB5JwAAmZkAAAAA//+ZmQAAeSfWupmZAAAAAAAAzMwAAAAA///MzAAA2yLWuszMAADbIgAA//8AANsiAADMzAAA")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_effuq"]
-resource_name = "car_dummy_chassis"
-_surfaces = [{
-"aabb": AABB(-2, -0.5, -1, 4.5297737, 1.3701408, 2),
-"attribute_data": PackedByteArray("/1//f/+f/3//nyC2/1//v/+f/7//X8xM/5//P/+fzEz/X/8//18AAP+fAAD/n94J/1//P/+f/z8g1v9/INb/P//f/3//3/8//18yc/8f/3//X2Vm/1//f/9fmVn/X8xM/1//P/8f/z//X/9//58yc/+f/3//XzJz/18yc/+fZWb/nzJz/19lZv9fZWb/n5lZ/59lZv9fmVn/X5lZ/5/MTP+fmVn/X8xM/1////9f/7//n////5//v/+fmVn/n8xMINb/P/+f/z//n2Vm/58ycyDW/3//n/9//1/MzP+fzMz/X5jZ/5+Y2f9fZeb/n2Xm/18y8/+fMvP/XyC2/1/eCd4pzEzeKf8//x/MTP8fmVneKZlZ/x9lZt4pZWb/HzJz3ikyc94p/38g1sxM/9/MTP/fMnMg1jJzINYyc//fZWb/3zJzINZlZiDWZWb/35lZ/99lZiDWmVkg1plZ/9/MTP/fmVkg1sxMINbMTCDWmVkg1mVmINYycw=="),
-"format": 34896613399,
-"index_count": 204,
-"index_data": PackedByteArray("NgAtADcANgArAC0AOAA2ADcAOAA3ADkAOgA4ADkAOgA5ADsAPAA6ADsAPAA7AD0AKgA8AD0AKgA9ACwAPgABAAIAPgAAAAEAAwA+AAIAAwACAAQABQAGAAcABQAIAAYAPwAKAAsAPwAJAAoADAA/AAsADAALAA0AQAAYABcAQABBABgAQgBBAEAAQgAZAEEAQwBCAEAARABAABcAQwBAAEQARAAXABYARQBDAEQARgBEABYARQBEAEYARgAWABQARwBFAEYASABGABQARwBGAEgAEwBHAEgASAAUABIAEwBIAEkASQBIABIASQASABUASgARAEsASgAPABEADgBMABAADgBNAEwATgBPAFAATgBRAE8AUgBTAFQAUgBVAFMAVgBXAFgAVgBZAFcAGgAbABwAGgAdABsAHgAfACAAHgAhAB8AIgAjACQAIgAlACMAJgAnACgAJgApACcALgBaAFsALgAvAFoALwAwAFoALwAxADAAMgAuAFsAMgBbAFwAMwAyAFwAMwBcAF0ANQAzAF0ANQBdADQA"),
-"lods": [0.12615661, PackedByteArray("AAABAAIAAwAAAAIAAwACAAQABQAGAAcABQAIAAYACQAKAAsADAAJAAsADAALAA0ADgAPABAADwARABAAEgATABQAEwASABUAEwAWABQAEwAXABYAEwAYABcAEwAZABgAGgAbABwAGgAdABsAHgAfACAAHgAhAB8AIgAjACQAIgAlACMAJgAnACgAJgApACcAKgArACwAKwAtACwALgAvADAALwAxADAAMgAuADAAMwAyADAAMwAwADQANQAzADQA")],
-"material": SubResource("StandardMaterial3D_pmh13"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 94,
-"vertex_data": PackedByteArray("DuIAAAAA//8O4ta6AAD//9si1roAAP//AAAAAAAA//8AAP//AAD//w7iAADMzFTVDuLWuv//VNUO4ta6zMxU1Q7iAAD//1TVAAAAAP///78AAP//////v9si1rr///+/DuIAAP///78O4ta6////v9si1roAAIXw2yLWuv//hfAAAP//AACF8AAA/////4XwDuIAADIz/78AAAAAAAD/v///AABlZv+/DuIAAAAA/7///wAAmZn/vw7iAADMzP+/DuIAAP///78AAAAA////vw7iAAAAAFTVDuLWujIzVNUO4ta6AABU1Q7iAAAyM1TVDuIAADIzh+3//9a6ZWaH7Q7i1royM4ft//8AAGVmh+3//wAAZWZU1f//1rqZmVTV///WumVmVNX//wAAmZlU1f//AACZmR7EDuLWuszMHsT//9a6mZkexA7iAADMzB7EAAAAAP//VNUAAAAAAABU1QAA/////1TVAAD//wAAVNX//9a6mZn//w7i1rrMzP//2yLWuv////8O4ta6////////1rplZv//DuLWujIz///bIta6AAD//w7i1roAAP//AAAAADIzVNUAAP//MjNU1QAAAABlZlTVAAD//2VmVNUAAAAAmZlU1QAA//+ZmVTVAAAAAMzMVNUAAP//zMxU1dsiAAAAAP//2yIAAP///7/bIgAAzMz/v9siAAD///+/AAAAAMzM/78AAAAAmZn/v3knAACZmf+/AAAAAGVm/795JwAAZWb/vwAAAAAyM/+/2yIAADIz/7/bIgAAAAD/v9si1rrMzIXwAAD//8zMhfAAAP//MjOF8Nsi1royM4Xw2yLWujIzq/EAAP//ZWay8QAA//8yM7nxeSfWumVmpvF5J9a6ZWYH8gAA//+ZmQfyAAD//2VmB/J5J9a6mZkH8nkn1rqZme3wAAD//8zM9PAAAP//mZn68Nsi1rrMzObw2yLWuszM//95J9a6mZn//3kn1rplZv//2yLWujIz////v/+//7//v/+//7//v/+//7//v6oqqiqqKqoqqiqqKqoqqir//////////////////////////zY4kg82OJIPNjiSDzY4kg8AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/f6oqqiqqKqoqqiqqKqoqqirQNtA20DbQNtA20DbQNtA2qiqqKqoqqiqqKqoqqiqqKq4ZrhmuGa4ZrhmuGa4ZrhlU1VTVVNVU1VTVVNVU1VTV/3//v/9//7//f/+//3//v/9//7//f/+//3//v/9//79U1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1VTVVNVU1f+//7//////AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fzY4kg82OJIPNjiSDzY4kg/XOSQP0jkrD805MQ/bOR8P7DgmDuw4Jg7sOCYO7DgmDlY3fQ5RN4MOTTeIDls3dw7/f/+//3//v/9//7//f/+/")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_i45gl")
+[ext_resource type="PackedScene" uid="uid://qowh1n11uxxw" path="res://car/bodies/bathtub.glb" id="2_ghgmr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7jbfx"]
 
@@ -70,8 +37,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_md6s8")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_1q3e4"]
-size = Vector3(2.00885, 1, 4.482666)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k6vmd"]
+radius = 1.0175781
+height = 5.4577637
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_1q3e4"]
 
@@ -83,10 +51,9 @@ engine_power = 1000
 brake_power = 1
 max_speed = 100.0
 
-[node name="Chassis" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.5356596, 0)
-mesh = SubResource("ArrayMesh_effuq")
-skeleton = NodePath("")
+[node name="ChassisBase" type="Node3D" parent="."]
+
+[node name="bathtub" parent="ChassisBase" instance=ExtResource("2_ghgmr")]
 
 [node name="wheel_FR" type="VehicleWheel3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0, 1)
@@ -125,12 +92,12 @@ mesh = SubResource("ArrayMesh_4okdk")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011138916, 0.5356596, 0.26696777)
-shape = SubResource("BoxShape3D_1q3e4")
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.011138916, 0.7341749, 0.23340166)
+shape = SubResource("CapsuleShape3D_k6vmd")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 transform = Transform3D(-1, 3.2749146e-08, -8.105699e-08, 0, 0.92718387, 0.37460658, 8.742278e-08, 0.37460658, -0.92718387, 0, 0, 0)
 shape = SubResource("SeparationRayShape3D_1q3e4")
-spring_length = 5.0
+spring_length = 7.0
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dp1vvehbwnvha"]
+[gd_scene load_steps=8 format=3 uid="uid://dp1vvehbwnvha"]
 
 [ext_resource type="Script" uid="uid://bjgwrauat2wb4" path="res://car/car_base.gd" id="1_1q3e4"]
-[ext_resource type="PackedScene" uid="uid://qowh1n11uxxw" path="res://car/bodies/bathtub.glb" id="2_ghgmr"]
+[ext_resource type="PackedScene" uid="uid://qowh1n11uxxw" path="res://car/bodies/bathtub/bathtub.glb" id="2_ghgmr"]
 [ext_resource type="PackedScene" uid="uid://dw02r8jdfkbwm" path="res://car/rounds/pizza/pizza.glb" id="3_k6vmd"]
+[ext_resource type="PackedScene" uid="uid://bhc0f2odtjt16" path="res://car/bodies/table/table.glb" id="4_2a55h"]
 [ext_resource type="PackedScene" uid="uid://pga05lstc164" path="res://car/rounds/lid/lid.glb" id="4_58cfw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_58cfw"]
@@ -35,6 +36,10 @@ transform = Transform3D(0.9995335, 0.004774343, 0.030166153, -0.0042436607, 0.99
 [node name="ChassisBase" type="Node3D" parent="."]
 
 [node name="bathtub" parent="ChassisBase" instance=ExtResource("2_ghgmr")]
+visible = false
+
+[node name="table" parent="ChassisBase" instance=ExtResource("4_2a55h")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742277e-08, 0, 8.742278e-08, -0.99999994, 0, 1.5495962, 0.56607574)
 
 [node name="RoadTest" type="RayCast3D" parent="."]
 target_position = Vector3(0, -10, 0)

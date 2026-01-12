@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://coh6hywmb4emi"
-path.s3tc="res://.godot/imported/Bathtub_diff.png-5298cf4a3968cb04719a3724c00c4735.s3tc.ctex"
+uid="uid://di6gsyigb1xif"
+path.s3tc="res://.godot/imported/table_diff.png-4491d4a17f63f1d25138aa4226eaad50.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://car/bodies/Bathtub_diff.png"
-dest_files=["res://.godot/imported/Bathtub_diff.png-5298cf4a3968cb04719a3724c00c4735.s3tc.ctex"]
+source_file="res://car/bodies/table/table_diff.png"
+dest_files=["res://.godot/imported/table_diff.png-4491d4a17f63f1d25138aa4226eaad50.s3tc.ctex"]
 
 [params]
 

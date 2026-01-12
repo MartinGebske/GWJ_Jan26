@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://qowh1n11uxxw"
-path="res://.godot/imported/bathtub.glb-abbe9370253a666d8aadf7f5f52ae728.scn"
+uid="uid://bhc0f2odtjt16"
+path="res://.godot/imported/table.glb-5ede77ab58f4e1cf9726c9ba9af97a31.scn"
 
 [deps]
 
-source_file="res://car/bodies/bathtub.glb"
-dest_files=["res://.godot/imported/bathtub.glb-abbe9370253a666d8aadf7f5f52ae728.scn"]
+source_file="res://car/bodies/table/table.glb"
+dest_files=["res://.godot/imported/table.glb-5ede77ab58f4e1cf9726c9ba9af97a31.scn"]
 
 [params]
 
@@ -39,10 +39,10 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
-"Bathtub": {
+"mat_table": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://car/bodies/mat_bathtub.tres",
-"use_external/path": "uid://cqo7twgdg7jd4"
+"use_external/fallback_path": "res://car/bodies/table/mat_table.tres",
+"use_external/path": "uid://lshtt40j7vme"
 }
 }
 }

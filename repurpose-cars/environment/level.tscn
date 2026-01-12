@@ -8,6 +8,9 @@ script = ExtResource("1_vfqff")
 
 [node name="worldmesh" parent="." instance=ExtResource("1_hjwoo")]
 
+[node name="RoadCurve1" parent="worldmesh" index="0"]
+layers = 2
+
 [node name="StartTrack_1" type="Node3D" parent="."]
 transform = Transform3D(0.64087397, 0.39924547, 0.6556552, -0.68449533, 0.6838343, 0.2526594, -0.34748644, -0.61071575, 0.71153325, -164.82399, 74.004005, 189.98604)
 
@@ -19,3 +22,5 @@ transform = Transform3D(-0.62874436, -0.2544094, -0.7348172, -0.10342282, 0.9639
 
 [node name="StartTrack_4" type="Node3D" parent="."]
 transform = Transform3D(-0.1562696, -0.40462124, 0.9010335, -0.072393514, 0.91447943, 0.3981038, -0.9850579, -0.0030174712, -0.17219725, 114.13941, 144.93005, 155.8138)
+
+[editable path="worldmesh"]

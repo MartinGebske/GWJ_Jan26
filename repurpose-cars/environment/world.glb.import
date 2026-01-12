@@ -52,7 +52,9 @@ _subresources={
 },
 "nodes": {
 "PATH:RoadCurve1": {
-"generate/physics": true
+"generate/physics": true,
+"physics/layer": 3,
+"physics/mask": 3
 },
 "PATH:World": {
 "generate/physics": true

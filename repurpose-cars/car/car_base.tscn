@@ -101,3 +101,6 @@ shape = SubResource("SeparationRayShape3D_1q3e4")
 spring_length = 7.0
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+
+[node name="RoadTest" type="RayCast3D" parent="."]
+target_position = Vector3(0, -10, 0)

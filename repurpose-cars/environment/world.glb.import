@@ -41,8 +41,8 @@ _subresources={
 "materials": {
 "World": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://environment/materials/level_world.tres",
-"use_external/path": "uid://bryipuls23ln4"
+"use_external/fallback_path": "res://environment/materials/level_terrain.tres",
+"use_external/path": "uid://da1h8808fx4po"
 },
 "road": {
 "use_external/enabled": true,

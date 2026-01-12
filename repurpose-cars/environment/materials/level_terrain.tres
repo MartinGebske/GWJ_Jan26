@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://da1h8808fx4po"]
+
+[ext_resource type="Shader" uid="uid://cqu3w7xusur0v" path="res://environment/materials/level_terrain_shader.tres" id="1_r5bxo"]
+[ext_resource type="Texture2D" uid="uid://dn0v3fn1gv5iv" path="res://environment/materials/rock/rock_ground_diff_2k.png" id="2_nxg2h"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_r5bxo")
+shader_parameter/ColorParameter = Color(0, 0, 0, 1)
+shader_parameter/RockTexture = ExtResource("2_nxg2h")

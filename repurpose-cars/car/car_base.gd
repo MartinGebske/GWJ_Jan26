@@ -47,7 +47,6 @@ func is_on_road() -> bool:
 	var result = space.intersect_ray(query)
 
 	var hit = result.size() > 0
-	print("on road: ", hit, " and is upside down: ", is_upside_down())
 	return hit
 
 func is_upside_down() -> bool:

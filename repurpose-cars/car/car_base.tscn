@@ -44,21 +44,22 @@ visible = false
 [node name="pizza" parent="SteeringwheelBase/Wheelholder" instance=ExtResource("3_k6vmd")]
 physics_interpolation_mode = 2
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
-visible = false
 
 [node name="toiletpaper" parent="SteeringwheelBase/Wheelholder" instance=ExtResource("6_quhsa")]
+physics_interpolation_mode = 2
 transform = Transform3D(-4.371139e-08, 0.13979527, 0.99018043, 1, 6.110646e-09, 4.328216e-08, 0, 0.99018043, -0.13979527, 0, 0, 0)
+visible = false
 
 [node name="ChassisBase" type="Node3D" parent="."]
 
 [node name="bathtub" parent="ChassisBase" instance=ExtResource("2_ghgmr")]
-visible = false
 
 [node name="table" parent="ChassisBase" instance=ExtResource("4_2a55h")]
 transform = Transform3D(1, 0, 0, 0, -1, -8.742277e-08, 0, 8.742278e-08, -0.99999994, 0, 1.5495962, 0.56607574)
 visible = false
 
 [node name="mattress" parent="ChassisBase" instance=ExtResource("7_728wk")]
+visible = false
 
 [node name="RoadTest" type="RayCast3D" parent="."]
 target_position = Vector3(0, -10, 0)

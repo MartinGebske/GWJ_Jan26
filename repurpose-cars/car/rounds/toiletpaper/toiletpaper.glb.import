@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://pga05lstc164"
-path="res://.godot/imported/lid.glb-13f814da2dc575276ed1a4fdbc30fa49.scn"
+uid="uid://bebx50r83f86"
+path="res://.godot/imported/toiletpaper.glb-ed638fdeb356b5bebb9771bacc86fd6b.scn"
 
 [deps]
 
-source_file="res://car/rounds/lid/lid.glb"
-dest_files=["res://.godot/imported/lid.glb-13f814da2dc575276ed1a4fdbc30fa49.scn"]
+source_file="res://car/rounds/toiletpaper/toiletpaper.glb"
+dest_files=["res://.godot/imported/toiletpaper.glb-ed638fdeb356b5bebb9771bacc86fd6b.scn"]
 
 [params]
 
@@ -39,20 +39,18 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
-"mat_lid": {
+"mat_toiletpaper": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://car/rounds/lid/mat_lid.tres",
-"use_external/path": "uid://c4x2mcb1yt75f"
+"use_external/fallback_path": "res://car/rounds/toiletpaper/mat_toiletpaper.tres",
+"use_external/path": "uid://bctjjp3bv54xg"
 }
 },
 "nodes": {
-"PATH:Lid": {
+"PATH:ToiletPaper": {
 "generate/physics": true,
-"physics/physics_material_override": null,
 "physics/shape_type": 5,
-"primitive/height": 0.5,
-"primitive/position": Vector3(0, 0.25, 0),
-"primitive/radius": 0.5
+"primitive/radius": 0.5,
+"primitive/rotation": Vector3(0, 0, 90)
 }
 }
 }

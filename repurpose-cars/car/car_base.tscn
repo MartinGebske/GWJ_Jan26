@@ -1,13 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://dp1vvehbwnvha"]
+[gd_scene load_steps=10 format=3 uid="uid://dp1vvehbwnvha"]
 
 [ext_resource type="Script" uid="uid://bjgwrauat2wb4" path="res://car/car_base.gd" id="1_1q3e4"]
 [ext_resource type="PackedScene" uid="uid://qowh1n11uxxw" path="res://car/bodies/bathtub/bathtub.glb" id="2_ghgmr"]
 [ext_resource type="PackedScene" uid="uid://dw02r8jdfkbwm" path="res://car/rounds/pizza/pizza.glb" id="3_k6vmd"]
 [ext_resource type="PackedScene" uid="uid://bhc0f2odtjt16" path="res://car/bodies/table/table.glb" id="4_2a55h"]
 [ext_resource type="PackedScene" uid="uid://pga05lstc164" path="res://car/rounds/lid/lid.glb" id="4_58cfw"]
+[ext_resource type="PackedScene" uid="uid://bebx50r83f86" path="res://car/rounds/toiletpaper/toiletpaper.glb" id="6_quhsa"]
+[ext_resource type="PackedScene" uid="uid://demp7x5csyk5n" path="res://car/bodies/mattress/mattress.glb" id="7_728wk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_58cfw"]
-radius = 0.6879883
+radius = 0.3959961
 height = 4.680298
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_1q3e4"]
@@ -21,7 +23,11 @@ brake_power = 1
 max_speed = 100.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.007751465, 0.5532787, 0.17536485)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.43469763, 0.25377417, 0.17536485)
+shape = SubResource("CapsuleShape3D_58cfw")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.41616726, 0.25377417, 0.17536485)
 shape = SubResource("CapsuleShape3D_58cfw")
 
 [node name="SteeringwheelBase" type="Node3D" parent="."]
@@ -31,7 +37,17 @@ transform = Transform3D(0.9998057, -0.007917067, 0.01805399, -0.008648375, 0.646
 transform = Transform3D(0.99999994, -9.313226e-10, 0, -9.313226e-10, 0.9999999, 2.9802322e-08, 9.313226e-10, 0, 0.9999998, 0, 0, 0)
 
 [node name="lid" parent="SteeringwheelBase/Wheelholder" instance=ExtResource("4_58cfw")]
+physics_interpolation_mode = 2
 transform = Transform3D(0.9995335, 0.004774343, 0.030166153, -0.0042436607, 0.99983543, -0.017632157, -0.030245373, 0.01749596, 0.99938923, 0, 0, 0)
+visible = false
+
+[node name="pizza" parent="SteeringwheelBase/Wheelholder" instance=ExtResource("3_k6vmd")]
+physics_interpolation_mode = 2
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+
+[node name="toiletpaper" parent="SteeringwheelBase/Wheelholder" instance=ExtResource("6_quhsa")]
+transform = Transform3D(-4.371139e-08, 0.13979527, 0.99018043, 1, 6.110646e-09, 4.328216e-08, 0, 0.99018043, -0.13979527, 0, 0, 0)
 
 [node name="ChassisBase" type="Node3D" parent="."]
 
@@ -40,6 +56,9 @@ visible = false
 
 [node name="table" parent="ChassisBase" instance=ExtResource("4_2a55h")]
 transform = Transform3D(1, 0, 0, 0, -1, -8.742277e-08, 0, 8.742278e-08, -0.99999994, 0, 1.5495962, 0.56607574)
+visible = false
+
+[node name="mattress" parent="ChassisBase" instance=ExtResource("7_728wk")]
 
 [node name="RoadTest" type="RayCast3D" parent="."]
 target_position = Vector3(0, -10, 0)
@@ -48,28 +67,29 @@ target_position = Vector3(0, -10, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0, 1)
 use_as_steering = true
 
-[node name="pizza" parent="wheel_FR" instance=ExtResource("3_k6vmd")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+[node name="lid" parent="wheel_FR" instance=ExtResource("4_58cfw")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="wheel_FL" type="VehicleWheel3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0, 1)
 use_as_steering = true
 
-[node name="pizza" parent="wheel_FL" instance=ExtResource("3_k6vmd")]
+[node name="lid" parent="wheel_FL" instance=ExtResource("4_58cfw")]
+transform = Transform3D(-4.371139e-08, 1, -8.742278e-08, 1, 4.371139e-08, -3.821371e-15, 0, -8.742278e-08, -1, 0, 0, 0)
 
 [node name="wheel_RR" type="VehicleWheel3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0, -1)
 use_as_traction = true
 
-[node name="pizza" parent="wheel_RR" instance=ExtResource("3_k6vmd")]
-transform = Transform3D(-1, 0, -8.742278e-08, -4.9406086e-08, 0.82499516, 0.5651398, 7.212337e-08, 0.5651398, -0.82499516, 0, 0, 0)
+[node name="lid" parent="wheel_RR" instance=ExtResource("4_58cfw")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="wheel_RL" type="VehicleWheel3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0, -1)
 use_as_traction = true
 
-[node name="pizza" parent="wheel_RL" instance=ExtResource("3_k6vmd")]
-transform = Transform3D(1, 0, 0, 0, 0.60135496, 0.798982, 0, -0.798982, 0.60135496, 0, 0, 0)
+[node name="lid" parent="wheel_RL" instance=ExtResource("4_58cfw")]
+transform = Transform3D(-4.371139e-08, 1, -8.742278e-08, 1, 4.371139e-08, -3.821371e-15, 0, -8.742278e-08, -1, 0, 0, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 transform = Transform3D(-1, 3.2749146e-08, -8.105699e-08, 0, 0.92718387, 0.37460658, 8.742278e-08, 0.37460658, -0.92718387, 0, 0, 0)

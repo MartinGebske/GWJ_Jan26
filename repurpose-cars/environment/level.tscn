@@ -6,6 +6,7 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vfqff"]
 friction = 0.25
 rough = true
+absorbent = true
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_alcuw"]
 

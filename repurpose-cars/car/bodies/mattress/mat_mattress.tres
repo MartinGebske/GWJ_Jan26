@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://k0nwnr88huby"]
+
+[ext_resource type="Texture2D" uid="uid://cck5bvphyld67" path="res://car/bodies/mattress/mattress_diff.png" id="1_gi3ox"]
+
+[resource]
+albedo_texture = ExtResource("1_gi3ox")

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://pga05lstc164"
-path="res://.godot/imported/lid.glb-13f814da2dc575276ed1a4fdbc30fa49.scn"
+uid="uid://demp7x5csyk5n"
+path="res://.godot/imported/mattress.glb-1424efa5aca4107621445046621b23db.scn"
 
 [deps]
 
-source_file="res://car/rounds/lid/lid.glb"
-dest_files=["res://.godot/imported/lid.glb-13f814da2dc575276ed1a4fdbc30fa49.scn"]
+source_file="res://car/bodies/mattress/mattress.glb"
+dest_files=["res://.godot/imported/mattress.glb-1424efa5aca4107621445046621b23db.scn"]
 
 [params]
 
@@ -39,20 +39,10 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
-"mat_lid": {
+"mat_mattress": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://car/rounds/lid/mat_lid.tres",
-"use_external/path": "uid://c4x2mcb1yt75f"
-}
-},
-"nodes": {
-"PATH:Lid": {
-"generate/physics": true,
-"physics/physics_material_override": null,
-"physics/shape_type": 5,
-"primitive/height": 0.5,
-"primitive/position": Vector3(0, 0.25, 0),
-"primitive/radius": 0.5
+"use_external/fallback_path": "res://car/bodies/mattress/mat_mattress.tres",
+"use_external/path": "uid://k0nwnr88huby"
 }
 }
 }

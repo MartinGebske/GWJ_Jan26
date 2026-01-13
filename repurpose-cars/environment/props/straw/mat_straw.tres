@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://g1mgan8qyivo"]
+
+[ext_resource type="Texture2D" uid="uid://d3xm236sfgdh1" path="res://environment/props/straw/straw_diff.png" id="1_soo0u"]
+
+[resource]
+albedo_texture = ExtResource("1_soo0u")

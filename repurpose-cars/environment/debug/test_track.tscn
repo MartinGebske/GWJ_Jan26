@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bh43jilfdc0d0"]
+[gd_scene load_steps=9 format=3 uid="uid://bh43jilfdc0d0"]
 
 [ext_resource type="PackedScene" uid="uid://dp1vvehbwnvha" path="res://car/car_base.tscn" id="1_4ym64"]
 [ext_resource type="PackedScene" uid="uid://bjyqu2rl8ctpv" path="res://environment/level.tscn" id="2_rbqoj"]
 [ext_resource type="PackedScene" uid="uid://b4bumce36njyx" path="res://environment/props/straw/straw.glb" id="3_ch1wq"]
+[ext_resource type="Script" uid="uid://dkawvpnn5xm72" path="res://environment/debug/goal.gd" id="4_qcsse"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oe6td"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -16,6 +17,10 @@ background_mode = 2
 sky = SubResource("Sky_4ym64")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ch1wq"]
+height = 13.75415
+radius = 6.51709
 
 [node name="testTrack" type="Node3D"]
 
@@ -90,6 +95,13 @@ transform = Transform3D(0.84663683, -0.0759462, -0.5267241, 0.11562879, 0.992371
 
 [node name="straw16" parent="props/track_1/strawbales" instance=ExtResource("3_ch1wq")]
 transform = Transform3D(0.8019124, 0.027325414, -0.5968164, -0.02889789, 0.9995584, 0.006936528, 0.5967425, 0.011684246, 0.802348, 66.61348, -61.226097, -153.23985)
+
+[node name="Goal" type="Area3D" parent="props/track_1"]
+script = ExtResource("4_qcsse")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="props/track_1/Goal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106.55569, -59.861427, -201.50095)
+shape = SubResource("CylinderShape3D_ch1wq")
 
 [node name="track_2" type="Node3D" parent="props"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -237.88693, 80.11481, 23.88918)

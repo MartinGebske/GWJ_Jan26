@@ -1,11 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://bh43jilfdc0d0"]
 
+[ext_resource type="VoxelGIData" uid="uid://b65f6bxrqwwhx" path="res://environment/GI data/test_track.VoxelGI_data.res" id="1_4hdtj"]
 [ext_resource type="PackedScene" uid="uid://dp1vvehbwnvha" path="res://car/car_base.tscn" id="1_4ym64"]
 [ext_resource type="PackedScene" uid="uid://bjyqu2rl8ctpv" path="res://environment/level.tscn" id="2_rbqoj"]
 [ext_resource type="PackedScene" uid="uid://b4bumce36njyx" path="res://environment/props/straw/straw.glb" id="3_ch1wq"]
-[ext_resource type="Script" uid="uid://dkawvpnn5xm72" path="res://environment/debug/goal.gd" id="4_qcsse"]
+[ext_resource type="PackedScene" uid="uid://cliyfl7maldpi" path="res://environment/debug/goal.tscn" id="4_qcsse"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oe6td"]
+sky_top_color = Color(0.1375, 0.31625003, 0.55, 1)
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 
@@ -17,10 +19,10 @@ background_mode = 2
 sky = SubResource("Sky_4ym64")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_ch1wq"]
-height = 13.75415
-radius = 6.51709
+glow_intensity = 0.46
+glow_strength = 0.44
+glow_bloom = 0.5
+glow_blend_mode = 0
 
 [node name="testTrack" type="Node3D"]
 
@@ -28,12 +30,18 @@ radius = 6.51709
 transform = Transform3D(-0.898228, -0.43301278, -0.07540873, -0.3089583, 0.49999997, 0.8090395, -0.31262004, 0.75, -0.5828968, 0, 0, 0)
 shadow_enabled = true
 shadow_normal_bias = 1.0
+directional_shadow_blend_splits = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rbqoj")
 
+[node name="VoxelGI" type="VoxelGI" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4650269, 74.87033, 2.2285767)
+size = Vector3(510.3297, 159.1672, 511.60583)
+data = ExtResource("1_4hdtj")
+
 [node name="CarBase" parent="." instance=ExtResource("1_4ym64")]
-transform = Transform3D(-0.64501125, 0.19766068, 0.73816735, -0.4288534, 0.70588404, -0.5637487, -0.6324913, -0.68018967, -0.37053585, -163.63297, 71.42261, 188.98164)
+transform = Transform3D(-0.72131336, 0.19591498, 0.6643226, -0.36432725, 0.708411, -0.6044996, -0.58904386, -0.6780643, -0.4396093, -158.25111, 66.18446, 184.69017)
 mass = 400.0
 engine_power = 8000
 
@@ -96,12 +104,8 @@ transform = Transform3D(0.84663683, -0.0759462, -0.5267241, 0.11562879, 0.992371
 [node name="straw16" parent="props/track_1/strawbales" instance=ExtResource("3_ch1wq")]
 transform = Transform3D(0.8019124, 0.027325414, -0.5968164, -0.02889789, 0.9995584, 0.006936528, 0.5967425, 0.011684246, 0.802348, 66.61348, -61.226097, -153.23985)
 
-[node name="Goal" type="Area3D" parent="props/track_1"]
-script = ExtResource("4_qcsse")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="props/track_1/Goal"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106.55569, -59.861427, -201.50095)
-shape = SubResource("CylinderShape3D_ch1wq")
+[node name="Goal" parent="props/track_1" instance=ExtResource("4_qcsse")]
+transform = Transform3D(0.7362496, -0.25764102, -0.62574595, 0.29825506, 0.9535752, -0.041694086, 0.6074378, -0.15593459, 0.77891195, 106.981064, -60.963577, -202.54114)
 
 [node name="track_2" type="Node3D" parent="props"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -237.88693, 80.11481, 23.88918)
@@ -164,6 +168,9 @@ transform = Transform3D(0.5340148, 0.08562041, -0.84112865, -0.0501987, 0.996315
 
 [node name="straw16" parent="props/track_2/strawbales" instance=ExtResource("3_ch1wq")]
 transform = Transform3D(0.5340148, 0.08562041, -0.84112865, -0.0501987, 0.9963153, 0.06954728, 0.8439834, 0.0050843097, 0.53634506, 149.03438, -68.12837, -32.535107)
+
+[node name="Goal" parent="props/track_2" instance=ExtResource("4_qcsse")]
+transform = Transform3D(0.9381007, 0, -0.3463627, 0, 1, 0, 0.3463627, 0, 0.9381007, 157.01831, -69.692505, -50.29889)
 
 [node name="track_3" type="Node3D" parent="props"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.79102, 72.78787, -174.29364)
@@ -331,6 +338,9 @@ transform = Transform3D(0.8313293, -0.33534098, -0.44321322, -0.114942625, 0.676
 
 [node name="straw5" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
 transform = Transform3D(0.6036656, -0.41339165, -0.6816855, -0.083660655, 0.8174909, -0.569833, 0.7928359, 0.40101895, 0.45890656, -13.994995, -3.14022, 7.336183)
+
+[node name="Goal" parent="props/track_3" instance=ExtResource("4_qcsse")]
+transform = Transform3D(-0.8022725, 0.04483995, 0.5952716, 0.05580408, 0.99844176, 0, -0.59434396, 0.03321858, -0.8035246, -210.64679, -63.608917, 112.28323)
 
 [node name="track_4" type="Node3D" parent="props"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.52954, 141.59764, 160.35468)
@@ -531,3 +541,6 @@ transform = Transform3D(0.9988463, 0.040155366, -0.026338961, -0.02053086, 0.852
 
 [node name="straw8" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
 transform = Transform3D(0.9725563, 0.04015536, 0.2291767, -0.15285279, 0.85288584, 0.49922115, -0.1754151, -0.52055097, 0.83561736, 6.2167826, -4.744071, -33.044834)
+
+[node name="Goal" parent="props/track_4" instance=ExtResource("4_qcsse")]
+transform = Transform3D(0.64042443, -0.3963766, 0.65783155, -0.09345538, 0.8099437, 0.57901424, -0.76231414, -0.43229267, 0.48166406, -133.65015, -128.40729, -211.83505)

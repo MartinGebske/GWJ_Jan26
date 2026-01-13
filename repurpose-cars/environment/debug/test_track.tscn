@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bh43jilfdc0d0"]
+[gd_scene load_steps=10 format=3 uid="uid://bh43jilfdc0d0"]
 
 [ext_resource type="VoxelGIData" uid="uid://b65f6bxrqwwhx" path="res://environment/GI data/test_track.VoxelGI_data.res" id="1_4hdtj"]
 [ext_resource type="PackedScene" uid="uid://dp1vvehbwnvha" path="res://car/car_base.tscn" id="1_4ym64"]
+[ext_resource type="Script" uid="uid://dej5ba1g460ei" path="res://environment/debug/game_manager.gd" id="1_ejgrd"]
 [ext_resource type="PackedScene" uid="uid://bjyqu2rl8ctpv" path="res://environment/level.tscn" id="2_rbqoj"]
 [ext_resource type="PackedScene" uid="uid://b4bumce36njyx" path="res://environment/props/straw/straw.glb" id="3_ch1wq"]
 [ext_resource type="PackedScene" uid="uid://cliyfl7maldpi" path="res://environment/debug/goal.tscn" id="4_qcsse"]
@@ -25,6 +26,10 @@ glow_bloom = 0.5
 glow_blend_mode = 0
 
 [node name="testTrack" type="Node3D"]
+
+[node name="GameManager" type="Node3D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("1_ejgrd")
+player = NodePath("../CarBase")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.898228, -0.43301278, -0.07540873, -0.3089583, 0.49999997, 0.8090395, -0.31262004, 0.75, -0.5828968, 0, 0, 0)

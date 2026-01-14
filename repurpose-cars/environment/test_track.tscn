@@ -39,10 +39,11 @@ uv1_offset = Vector3(0, 0.5, 0)
 
 [node name="main" type="Node3D"]
 
-[node name="GameManager" type="Node3D" parent="." node_paths=PackedStringArray("player", "user_interface")]
+[node name="GameManager" type="Node3D" parent="." node_paths=PackedStringArray("player", "user_interface", "tracks")]
 script = ExtResource("1_qtquq")
 player = NodePath("../CarBase")
 user_interface = NodePath("../user_interface")
+tracks = [NodePath("../props/track_1"), NodePath("../props/track_2"), NodePath("../props/track_3"), NodePath("../props/track_4")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.898228, -0.43301278, -0.07540873, -0.3089583, 0.49999997, 0.8090395, -0.31262004, 0.75, -0.5828968, 0, 0, 0)
@@ -133,7 +134,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6032737, -5.4357944, 13.470
 material_override = SubResource("StandardMaterial3D_8crpl")
 
 [node name="finishLine" parent="props/track_1" instance=ExtResource("7_f7782")]
-transform = Transform3D(-0.76340073, 0.01805674, 0.6456731, -0.26918134, 0.89977807, -0.3434248, -0.5871638, -0.43597382, -0.6820307, 101.72249, -61.403988, -195.2629)
+transform = Transform3D(-0.7634008, -0.23390931, 0.6020849, -0.26918137, 0.9625361, 0.032641873, -0.5871638, -0.13715127, -0.7977647, 101.72249, -61.403988, -195.2629)
 
 [node name="StartFinish" parent="props/track_1/finishLine" index="0"]
 material_override = SubResource("StandardMaterial3D_k3nx4")
@@ -202,6 +203,19 @@ transform = Transform3D(0.5340148, 0.08562041, -0.84112865, -0.0501987, 0.996315
 
 [node name="Goal" parent="props/track_2" instance=ExtResource("6_k3nx4")]
 transform = Transform3D(0.9381007, 0, -0.3463627, 0, 1, 0, 0.3463627, 0, 0.9381007, 157.01831, -69.692505, -50.29889)
+
+[node name="startLine" parent="props/track_2" instance=ExtResource("7_f7782")]
+transform = Transform3D(-0.5612939, 0.5853986, 0.58502805, 0.5344308, 0.7961161, -0.28387153, -0.63192844, 0.1533215, -0.75970995, 15.407274, -8.48528, -14.767186)
+
+[node name="StartFinish" parent="props/track_2/startLine" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6032737, -5.4357944, 13.470994)
+material_override = SubResource("StandardMaterial3D_8crpl")
+
+[node name="finishLine" parent="props/track_2" instance=ExtResource("7_f7782")]
+transform = Transform3D(-0.7289073, 0.051813953, 0.68264925, 0.070905566, 0.9974829, 0, -0.6809312, 0.0484036, -0.7307464, 153.67113, -71.12187, -45.213356)
+
+[node name="StartFinish" parent="props/track_2/finishLine" index="0"]
+material_override = SubResource("StandardMaterial3D_k3nx4")
 
 [node name="track_3" type="Node3D" parent="props"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.79102, 72.78787, -174.29364)
@@ -372,6 +386,19 @@ transform = Transform3D(0.6036656, -0.41339165, -0.6816855, -0.083660655, 0.8174
 
 [node name="Goal" parent="props/track_3" instance=ExtResource("6_k3nx4")]
 transform = Transform3D(-0.8022725, 0.04483995, 0.5952716, 0.05580408, 0.99844176, 0, -0.59434396, 0.03321858, -0.8035246, -210.64679, -63.608917, 112.28323)
+
+[node name="startLine" parent="props/track_3" instance=ExtResource("7_f7782")]
+transform = Transform3D(0.6671102, -0.08663933, -0.7399039, -0.26711574, 0.8993508, -0.34614602, 0.6954233, 0.4285574, 0.5768235, -11.656903, -12.045307, 15.217381)
+
+[node name="StartFinish" parent="props/track_3/startLine" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6032737, -5.4357944, 13.470994)
+material_override = SubResource("StandardMaterial3D_8crpl")
+
+[node name="finishLine" parent="props/track_3" instance=ExtResource("7_f7782")]
+transform = Transform3D(0.939448, 0, -0.3426925, 0, 0.9999999, 0, 0.34269258, 0, 0.93944776, -207.83755, -65.9139, 108.6564)
+
+[node name="StartFinish" parent="props/track_3/finishLine" index="0"]
+material_override = SubResource("StandardMaterial3D_k3nx4")
 
 [node name="track_4" type="Node3D" parent="props"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.52954, 141.59764, 160.35468)
@@ -576,7 +603,26 @@ transform = Transform3D(0.9725563, 0.04015536, 0.2291767, -0.15285279, 0.8528858
 [node name="Goal" parent="props/track_4" instance=ExtResource("6_k3nx4")]
 transform = Transform3D(0.64042443, -0.3963766, 0.65783155, -0.09345538, 0.8099437, 0.57901424, -0.76231414, -0.43229267, 0.48166406, -133.65015, -128.40729, -211.83505)
 
+[node name="startLine" parent="props/track_4" instance=ExtResource("7_f7782")]
+transform = Transform3D(-0.9146935, -0.40414843, -0.0005941875, -0.26695073, 0.60528123, -0.7499145, 0.30343655, -0.68578297, -0.66153455, -0.13137126, -4.121565, -35.238018)
+
+[node name="StartFinish" parent="props/track_4/startLine" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6032737, -5.4357944, 13.470994)
+material_override = SubResource("StandardMaterial3D_8crpl")
+
+[node name="finishLine" parent="props/track_4" instance=ExtResource("7_f7782")]
+transform = Transform3D(-0.5347235, -0.49379182, -0.68574095, 0.14940481, 0.7434717, -0.6518651, 0.8317149, -0.45102036, -0.32377684, -130.62277, -126.88858, -210.24763)
+
+[node name="StartFinish" parent="props/track_4/finishLine" index="0"]
+material_override = SubResource("StandardMaterial3D_k3nx4")
+
 [node name="user_interface" parent="." instance=ExtResource("7_gep4w")]
 
 [editable path="props/track_1/startLine"]
 [editable path="props/track_1/finishLine"]
+[editable path="props/track_2/startLine"]
+[editable path="props/track_2/finishLine"]
+[editable path="props/track_3/startLine"]
+[editable path="props/track_3/finishLine"]
+[editable path="props/track_4/startLine"]
+[editable path="props/track_4/finishLine"]

@@ -3,15 +3,39 @@ class_name GameManager
 
 @export var player: VehicleBody3D
 @export var user_interface : Control
+@export var tracks : Array[Node3D]
+
+
+
+var current_track:
+	set(value):
+		current_track = value
 
 var is_racing := false
 var lap_time := 0.0
 var current_time := 0.0
+var player_is_in_goal := false
+
+func start_new_game() -> void:
+	print("selected track: ", current_track)
+	freeze_player()
+
+	lap_time = 0.0
+	current_time = 0.0
+	player_is_in_goal = false
+
+	for track in tracks:
+		if track:
+			track.hide()
+
+	if tracks[current_track]:
+		tracks[current_track].show()
 
 
 func _ready() -> void:
 	freeze_player()
-
+	current_track = 0
+	start_new_game()
 
 func _physics_process(delta: float) -> void:
 	if is_racing:
@@ -31,8 +55,8 @@ func start_ride() -> void:
 
 func player_in_goal() -> void:
 	is_racing = false
+	player_is_in_goal = true
 	lap_time = current_time
-	print("Lap time:", lap_time)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	user_interface.finish_race()
 

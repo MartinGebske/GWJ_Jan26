@@ -9,6 +9,8 @@ extends VehicleBody3D
 
 @onready var wheelholder: Node3D = $SteeringwheelBase/Wheelholder
 
+@onready var game_manager: GameManager = get_node("/root/main/GameManager")
+
 func _ready() -> void:
 	can_drive = true
 
@@ -38,6 +40,13 @@ func _physics_process(delta: float) -> void:
 	var current_speed = linear_velocity.length()
 	if current_speed > max_speed:
 		linear_velocity = linear_velocity.normalized() * max_speed
+
+func get_ready() -> void:
+	if not game_manager.player_is_in_goal:
+		if game_manager:
+			game_manager.run_countdown()
+		else:
+			return
 
 # MANAGE CAR ON ROAD
 

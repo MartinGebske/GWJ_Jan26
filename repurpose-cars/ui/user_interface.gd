@@ -10,6 +10,7 @@ func finish_race() -> void:
 	prompt_label.text = "FINISH!"
 	await get_tree().create_timer(3.0).timeout
 	set_countdown_label("")
+	time_label.text = ""
 
 func set_countdown_label(t: String) -> void:
 	prompt_label.text = t

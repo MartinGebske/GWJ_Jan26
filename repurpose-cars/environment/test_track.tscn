@@ -1,11 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://bh43jilfdc0d0"]
+[gd_scene load_steps=15 format=3 uid="uid://bh43jilfdc0d0"]
 
-[ext_resource type="VoxelGIData" uid="uid://b65f6bxrqwwhx" path="res://environment/GI data/test_track.VoxelGI_data.res" id="1_4hdtj"]
-[ext_resource type="PackedScene" uid="uid://dp1vvehbwnvha" path="res://car/car_base.tscn" id="1_4ym64"]
-[ext_resource type="Script" uid="uid://dej5ba1g460ei" path="res://environment/debug/game_manager.gd" id="1_ejgrd"]
-[ext_resource type="PackedScene" uid="uid://bjyqu2rl8ctpv" path="res://environment/level.tscn" id="2_rbqoj"]
-[ext_resource type="PackedScene" uid="uid://b4bumce36njyx" path="res://environment/props/straw/straw.glb" id="3_ch1wq"]
-[ext_resource type="PackedScene" uid="uid://cliyfl7maldpi" path="res://environment/debug/goal.tscn" id="4_qcsse"]
+[ext_resource type="Script" uid="uid://dej5ba1g460ei" path="res://environment/game_manager.gd" id="1_qtquq"]
+[ext_resource type="VoxelGIData" uid="uid://b65f6bxrqwwhx" path="res://environment/GI data/test_track.VoxelGI_data.res" id="2_mutpj"]
+[ext_resource type="PackedScene" uid="uid://dp1vvehbwnvha" path="res://car/car_base.tscn" id="3_f7782"]
+[ext_resource type="PackedScene" uid="uid://bjyqu2rl8ctpv" path="res://environment/level.tscn" id="4_f8sje"]
+[ext_resource type="PackedScene" uid="uid://b4bumce36njyx" path="res://environment/props/straw/straw.glb" id="5_8crpl"]
+[ext_resource type="PackedScene" uid="uid://cliyfl7maldpi" path="res://environment/goal.tscn" id="6_k3nx4"]
+[ext_resource type="PackedScene" uid="uid://t5dkeas6w6wp" path="res://environment/props/start_finish/start_finish.glb" id="7_f7782"]
+[ext_resource type="PackedScene" uid="uid://bg43wrbx8mt4r" path="res://ui/user_interface.tscn" id="7_gep4w"]
+[ext_resource type="Texture2D" uid="uid://8s7cqc36d3jy" path="res://environment/props/start_finish/StartFinish_diff.png" id="8_f8sje"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oe6td"]
 sky_top_color = Color(0.1375, 0.31625003, 0.55, 1)
@@ -25,11 +28,21 @@ glow_strength = 0.44
 glow_bloom = 0.5
 glow_blend_mode = 0
 
-[node name="testTrack" type="Node3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8crpl"]
+cull_mode = 2
+albedo_texture = ExtResource("8_f8sje")
 
-[node name="GameManager" type="Node3D" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("1_ejgrd")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k3nx4"]
+cull_mode = 2
+albedo_texture = ExtResource("8_f8sje")
+uv1_offset = Vector3(0, 0.5, 0)
+
+[node name="main" type="Node3D"]
+
+[node name="GameManager" type="Node3D" parent="." node_paths=PackedStringArray("player", "user_interface")]
+script = ExtResource("1_qtquq")
 player = NodePath("../CarBase")
+user_interface = NodePath("../user_interface")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.898228, -0.43301278, -0.07540873, -0.3089583, 0.49999997, 0.8090395, -0.31262004, 0.75, -0.5828968, 0, 0, 0)
@@ -43,14 +56,14 @@ environment = SubResource("Environment_rbqoj")
 [node name="VoxelGI" type="VoxelGI" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4650269, 74.87033, 2.2285767)
 size = Vector3(510.3297, 159.1672, 511.60583)
-data = ExtResource("1_4hdtj")
+data = ExtResource("2_mutpj")
 
-[node name="CarBase" parent="." instance=ExtResource("1_4ym64")]
+[node name="CarBase" parent="." instance=ExtResource("3_f7782")]
 transform = Transform3D(-0.72131336, 0.19591498, 0.6643226, -0.36432725, 0.708411, -0.6044996, -0.58904386, -0.6780643, -0.4396093, -158.25111, 66.18446, 184.69017)
 mass = 400.0
 engine_power = 8000
 
-[node name="level" parent="." node_paths=PackedStringArray("car") instance=ExtResource("2_rbqoj")]
+[node name="level" parent="." node_paths=PackedStringArray("car") instance=ExtResource("4_f8sje")]
 transform = Transform3D(0.99999964, -0.0008544785, -0.00010956577, 0.0008544279, 0.99999946, -0.0004617196, 0.00010995959, 0.00046162592, 0.9999999, 0, 0, 0)
 car = NodePath("../CarBase")
 
@@ -61,120 +74,133 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -165.03845, 72.70379, 190.137
 
 [node name="strawbales" type="Node3D" parent="props/track_1"]
 
-[node name="straw" parent="props/track_1/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw" parent="props/track_1/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.73866713, 0.47130284, -0.4819176, 0, 0.71493655, 0.69918936, 0.6740705, -0.51646817, 0.52810013, 16.443542, -10.089192, -5.182366)
 
-[node name="straw2" parent="props/track_1/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw2" parent="props/track_1/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.73866713, 0.41937006, -0.5277307, 3.7252903e-09, 0.78290147, 0.62214583, 0.67407054, -0.4595586, 0.5783036, 18.482769, -12.720954, -7.541827)
 
-[node name="straw3" parent="props/track_1/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw3" parent="props/track_1/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.73866713, 0.4023602, -0.5408116, -7.450581e-09, 0.80230725, 0.59691125, 0.67407054, -0.44091874, 0.5926381, 20.749723, -15.554579, -10.026029)
 
-[node name="straw4" parent="props/track_1/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw4" parent="props/track_1/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.82778275, 0.3757348, -0.4166522, -0.10092015, 0.83023614, 0.54819995, 0.5518976, -0.41174185, 0.72517437, 22.957077, -18.038036, -13.291864)
 
-[node name="straw5" parent="props/track_1/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw5" parent="props/track_1/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.8266159, -0.025207676, -0.5622016, 0.39758566, 0.73317677, 0.55170405, 0.39828604, -0.6795706, 0.61607784, 5.8971853, -12.572718, -12.287377)
 
-[node name="straw6" parent="props/track_1/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw6" parent="props/track_1/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.8477751, 0.12368434, -0.51573217, 0.28831974, 0.708697, 0.64391005, 0.4451397, -0.69458663, 0.5651553, 8.220922, -14.7281275, -15.235082)
 
-[node name="straw7" parent="props/track_1/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw7" parent="props/track_1/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.7863901, 0.2681176, -0.55651003, 0.120862216, 0.81670165, 0.5642612, 0.60579133, -0.5109905, 0.609841, 10.978095, -16.98762, -18.092953)
 
-[node name="straw8" parent="props/track_1/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw8" parent="props/track_1/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.9201942, 0.08375177, -0.38239804, 0.18748632, 0.7632328, 0.6183241, 0.3436446, -0.6406726, 0.68662006, 12.870635, -19.40447, -20.827301)
 
-[node name="straw9" parent="props/track_1/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw9" parent="props/track_1/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.8271069, 0.21584672, -0.5189455, -0.15490691, 0.9751018, 0.15868336, 0.54027605, -0.05085981, 0.8399494, 69.614815, -59.1617, -133.55815)
 
-[node name="straw10" parent="props/track_1/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw10" parent="props/track_1/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.8674054, 0.17077664, -0.46737903, -0.14480889, 0.98524314, 0.091250665, 0.4760656, -0.011470754, 0.8793353, 71.5401, -59.6495, -137.5192)
 
-[node name="straw11" parent="props/track_1/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw11" parent="props/track_1/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.8406337, 0.029291205, -0.54081154, 0.08051578, 0.98068213, 0.17826852, 0.53558606, -0.19340241, 0.82203615, 73.88219, -60.00695, -141.03157)
 
-[node name="straw12" parent="props/track_1/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw12" parent="props/track_1/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.81861866, -0.04935865, -0.5722126, 0.09434497, 0.9943229, 0.049202383, 0.5665356, -0.094263405, 0.8186282, 76.304504, -60.48411, -145.10675)
 
-[node name="straw13" parent="props/track_1/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw13" parent="props/track_1/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.7959471, -0.096184336, -0.59767616, 0.11034725, 0.99380827, -0.012980735, 0.5952241, -0.055619843, 0.80163246, 59.5534, -60.781982, -141.169)
 
-[node name="straw14" parent="props/track_1/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw14" parent="props/track_1/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.8477751, -0.00024865245, -0.530356, -0.00035749376, 0.99999934, -0.0010401495, 0.530356, 0.0010710768, 0.8477747, 62.123318, -60.726215, -145.2226)
 
-[node name="straw15" parent="props/track_1/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw15" parent="props/track_1/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.84663683, -0.0759462, -0.5267241, 0.11562879, 0.9923711, 0.042771865, 0.51945764, -0.097116746, 0.84895957, 64.342834, -61.126976, -149.07341)
 
-[node name="straw16" parent="props/track_1/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw16" parent="props/track_1/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.8019124, 0.027325414, -0.5968164, -0.02889789, 0.9995584, 0.006936528, 0.5967425, 0.011684246, 0.802348, 66.61348, -61.226097, -153.23985)
 
-[node name="Goal" parent="props/track_1" instance=ExtResource("4_qcsse")]
+[node name="Goal" parent="props/track_1" instance=ExtResource("6_k3nx4")]
 transform = Transform3D(0.7362496, -0.25764102, -0.62574595, 0.29825506, 0.9535752, -0.041694086, 0.6074378, -0.15593459, 0.77891195, 106.981064, -60.963577, -202.54114)
+
+[node name="startLine" parent="props/track_1" instance=ExtResource("7_f7782")]
+transform = Transform3D(-0.7580965, 0.09163187, 0.64567304, -0.18110704, 0.92155266, -0.34342483, -0.6264906, -0.37728503, -0.6820306, 15.0175, -17.911129, -13.132975)
+
+[node name="StartFinish" parent="props/track_1/startLine" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6032737, -5.4357944, 13.470994)
+material_override = SubResource("StandardMaterial3D_8crpl")
+
+[node name="finishLine" parent="props/track_1" instance=ExtResource("7_f7782")]
+transform = Transform3D(-0.76340073, 0.01805674, 0.6456731, -0.26918134, 0.89977807, -0.3434248, -0.5871638, -0.43597382, -0.6820307, 101.72249, -61.403988, -195.2629)
+
+[node name="StartFinish" parent="props/track_1/finishLine" index="0"]
+material_override = SubResource("StandardMaterial3D_k3nx4")
 
 [node name="track_2" type="Node3D" parent="props"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -237.88693, 80.11481, 23.88918)
 
 [node name="strawbales" type="Node3D" parent="props/track_2"]
 
-[node name="straw" parent="props/track_2/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw" parent="props/track_2/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.35855138, 0.64583975, -0.6740416, -0.35439932, 0.76216745, 0.54175836, 0.86362153, 0.04463164, 0.5021613, 3.1114655, -3.1290283, 5.787462)
 
-[node name="straw2" parent="props/track_2/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw2" parent="props/track_2/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.452935, 0.6458398, -0.6146064, -0.4295532, 0.7621675, 0.48433983, 0.7812388, 0.044631653, 0.6226348, 5.8771057, -5.350815, 3.7086468)
 
-[node name="straw19" parent="props/track_2/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw19" parent="props/track_2/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.452935, 0.6458398, -0.6146064, -0.4295532, 0.7621675, 0.48433983, 0.7812388, 0.044631653, 0.6226348, 8.803131, -4.891754, 2.2646446)
 
-[node name="straw3" parent="props/track_2/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw3" parent="props/track_2/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.52447027, 0.64583987, -0.5548172, -0.485385, 0.7621675, 0.4283718, 0.699523, 0.04463166, 0.71321505, 8.213577, -7.1729813, 1.0155506)
 
-[node name="straw4" parent="props/track_2/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw4" parent="props/track_2/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.29135597, 0.4335782, -0.85271436, 0.013805106, 0.88938904, 0.45694292, 0.956515, -0.14490494, 0.25314322, 63.989563, -39.53254, -66.394905)
 
-[node name="straw18" parent="props/track_2/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw18" parent="props/track_2/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.29135597, 0.3856538, -0.875433, 0.013805106, 0.9133463, 0.4069501, 0.95651495, -0.13065284, 0.2607849, 66.67149, -38.445477, -67.227516)
 
-[node name="straw5" parent="props/track_2/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw5" parent="props/track_2/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(-0.07822203, 0.47162113, -0.8783252, 0.007905646, 0.8812906, 0.47250924, 0.99690455, 0.030016841, -0.07266479, 67.85669, -41.360638, -67.27122)
 
-[node name="straw6" parent="props/track_2/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw6" parent="props/track_2/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(-0.14518124, 0.57063264, -0.80827063, 0.054905288, 0.8203138, 0.56927276, 0.98788035, 0.038269326, -0.15042487, 71.15759, -43.35985, -66.8675)
 
-[node name="straw7" parent="props/track_2/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw7" parent="props/track_2/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(-0.14518124, 0.6722909, -0.72591186, 0.054905288, 0.73802906, 0.67253184, 0.98788035, 0.057782553, -0.14406025, 74.466156, -46.170174, -66.22507)
 
-[node name="straw8" parent="props/track_2/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw8" parent="props/track_2/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(-0.3780924, 0.06703066, -0.92333806, 0.05443444, 0.99725974, 0.05010687, 0.92416596, -0.03131641, -0.380705, 117.05965, -61.47543, -30.583797)
 
-[node name="straw9" parent="props/track_2/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw9" parent="props/track_2/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(-0.15127441, 0.26072812, -0.95348686, 0.08986136, 0.964221, 0.24940626, 0.9843987, -0.047952924, -0.16929132, 121.24885, -62.01034, -29.009285)
 
-[node name="straw10" parent="props/track_2/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw10" parent="props/track_2/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.007501535, 0.49013466, -0.8716147, 0.07155349, 0.86914206, 0.4893597, 0.99740845, -0.06603812, -0.028550968, 125.00042, -63.74482, -28.485817)
 
-[node name="straw11" parent="props/track_2/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw11" parent="props/track_2/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(-0.054775156, 0.49013466, -0.8699241, 0.10632461, 0.869142, 0.48299888, 0.99282146, -0.0660381, -0.09972077, 128.65967, -65.78896, -28.230307)
 
-[node name="straw17" parent="props/track_2/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw17" parent="props/track_2/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(-0.054775156, 0.24226677, -0.96866226, 0.10632461, 0.96601856, 0.23559302, 0.9928214, -0.09008811, -0.078672744, 131.59431, -64.53526, -28.202662)
 
-[node name="straw12" parent="props/track_2/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw12" parent="props/track_2/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.06651362, 0.18676402, -0.9801507, 0.070034824, 0.97902966, 0.191303, 0.99532443, -0.08136903, 0.052038785, 133.69907, -67.22209, -28.40323)
 
-[node name="straw13" parent="props/track_2/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw13" parent="props/track_2/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.24155872, 0.21049385, -0.9472813, 0.015067119, 0.97525907, 0.22055289, 0.9702691, -0.06754933, 0.23241073, 138.2584, -68.3486, -28.983343)
 
-[node name="straw14" parent="props/track_2/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw14" parent="props/track_2/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.43546256, 0.16093677, -0.8857041, -0.031675234, 0.98602, 0.16359141, 0.89964926, -0.04318307, 0.43447244, 146.8788, -70.11482, -31.629967)
 
-[node name="straw15" parent="props/track_2/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw15" parent="props/track_2/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.5340148, 0.08562041, -0.84112865, -0.0501987, 0.9963153, 0.06954728, 0.8439834, 0.0050843097, 0.53634506, 150.91927, -70.456055, -33.866173)
 
-[node name="straw16" parent="props/track_2/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw16" parent="props/track_2/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.5340148, 0.08562041, -0.84112865, -0.0501987, 0.9963153, 0.06954728, 0.8439834, 0.0050843097, 0.53634506, 149.03438, -68.12837, -32.535107)
 
-[node name="Goal" parent="props/track_2" instance=ExtResource("4_qcsse")]
+[node name="Goal" parent="props/track_2" instance=ExtResource("6_k3nx4")]
 transform = Transform3D(0.9381007, 0, -0.3463627, 0, 1, 0, 0.3463627, 0, 0.9381007, 157.01831, -69.692505, -50.29889)
 
 [node name="track_3" type="Node3D" parent="props"]
@@ -182,169 +208,169 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.79102, 72.78787, -174.293
 
 [node name="strawbales" type="Node3D" parent="props/track_3"]
 
-[node name="straw" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.63273233, 0, -0.77437055, 0, 1, 0, 0.77437055, 0, 0.63273233, -5.8085895, -1.7044144, -0.6623604)
 
-[node name="straw2" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw2" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.7743449, -0.22788283, -0.5903044, 0.08391382, 0.96164155, -0.261159, 0.62717485, 0.1526925, 0.7637648, -9.642145, -1.9870467, 2.4700093)
 
-[node name="straw3" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw3" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.723911, -0.41339165, -0.5523225, 0.027921045, 0.8174909, -0.5752644, 0.68932813, 0.40101892, 0.603333, -12.087389, -3.7630796, 5.358102)
 
-[node name="straw4" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw4" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.723911, -0.41339165, -0.5523225, 0.027921045, 0.8174909, -0.5752644, 0.68932813, 0.40101892, 0.603333, -14.588924, -6.1564455, 8.082081)
 
-[node name="straw6" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw6" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.8313293, -0.37265748, -0.41233233, -0.11494264, 0.6105777, -0.7835706, 0.54376435, 0.6988, 0.46475703, -4.551794, -8.1418295, 15.58533)
 
-[node name="straw7" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw7" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.8313293, -0.37265748, -0.41233233, -0.11494264, 0.6105777, -0.7835706, 0.54376435, 0.6988, 0.46475703, -6.4983335, -11.5947, 17.831402)
 
-[node name="straw8" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw8" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.8313293, -0.34181783, -0.4382375, -0.11494264, 0.66572076, -0.73729503, 0.5437644, 0.6633074, 0.5141438, -8.38976, -14.757442, 20.054543)
 
-[node name="straw9" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw9" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.8313293, -0.2987728, -0.46864307, -0.114942625, 0.7325619, -0.6709256, 0.5437645, 0.6116275, 0.5746585, -10.323784, -17.634003, 22.403303)
 
-[node name="straw11" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw11" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.4555856, -0.3690285, -0.81009865, -0.22158448, 0.834372, -0.5047012, 0.8621729, 0.40944022, 0.2983571, -51.114258, -39.435883, 45.119102)
 
-[node name="straw15" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw15" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.4776208, -0.3400274, -0.81009865, -0.2729662, 0.81900287, -0.50470126, 0.8350855, 0.46218568, 0.2983571, -54.34471, -41.58778, 46.59271)
 
-[node name="straw16" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw16" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.47762084, -0.1344921, -0.868211, -0.2729662, 0.9165899, -0.29215065, 0.83508545, 0.3765298, 0.40107086, -94.29958, -56.941025, 61.760868)
 
-[node name="straw17" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw17" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.32810083, -0.1344921, -0.9350197, -0.31735656, 0.9165899, -0.24320231, 0.8897385, 0.3765298, 0.25805217, -98.24751, -57.90002, 63.251022)
 
-[node name="straw18" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw18" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.3281008, -0.13850537, -0.9344336, -0.31735656, 0.91553736, -0.24713545, 0.88973856, 0.3776343, 0.25643316, -102.370255, -58.912933, 64.410034)
 
-[node name="straw19" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw19" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.10963297, -0.1016451, -0.98876137, -0.36388513, 0.9215958, -0.13508755, 0.9249693, 0.37460592, 0.064050324, -106.76202, -59.619663, 65.11143)
 
-[node name="straw20" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw20" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(-0.065669715, -0.1016451, -0.992651, -0.38195047, 0.9215958, -0.06910073, 0.9218466, 0.3746059, -0.09934415, -110.92352, -60.050873, 65.0431)
 
-[node name="straw21" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw21" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(-0.33721474, -0.34402812, -0.87631685, -0.032977946, 0.93458337, -0.35421222, 0.94084996, -0.090546325, -0.32650056, -134.35904, -63.59979, 61.903194)
 
-[node name="straw22" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw22" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(-0.33721474, -0.34402812, -0.87631685, -0.032977946, 0.93458337, -0.35421222, 0.94084996, -0.090546325, -0.32650056, -138.30556, -65.19499, 60.432793)
 
-[node name="straw23" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw23" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(-0.33721474, -0.266863, -0.9028126, -0.032977946, 0.96174216, -0.271964, 0.94084996, -0.061937235, -0.33311415, -142.69722, -66.09826, 58.8271)
 
-[node name="straw25" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw25" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(-0.63621986, -0.08238878, -0.767096, -0.052255087, 0.99660003, -0.06369822, 0.76973605, -0.0004413724, -0.63836205, -146.53427, -66.61985, 56.357773)
 
-[node name="straw26" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw26" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(-0.6362199, -0.107656695, -0.7639596, -0.052255087, 0.9939554, -0.096549526, 0.76973605, -0.021505926, -0.63799983, -149.71732, -67.007866, 53.70051)
 
-[node name="straw28" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw28" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.35515454, 0.20690353, -0.91162276, -0.20206325, 0.9691351, 0.14123596, 0.91270787, 0.13404512, 0.38600037, -205.16576, -58.39119, -0.22828905)
 
-[node name="straw33" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw33" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.35515454, 0.20690353, -0.91162276, -0.20206325, 0.9691351, 0.14123596, 0.91270787, 0.13404512, 0.38600037, -209.04666, -57.5936, 1.4584342)
 
-[node name="straw34" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw34" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.5056315, 0.09409952, -0.8576025, -0.122785114, 0.9917645, 0.036427896, 0.85396737, 0.08688194, 0.51302135, -212.86731, -57.19914, 3.2771392)
 
-[node name="straw35" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw35" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.5834902, 0.053613503, -0.8103486, -0.06715224, 0.9975866, 0.017648593, 0.8093389, 0.044119187, 0.5856824, -216.6526, -57.01877, 5.4266963)
 
-[node name="straw36" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw36" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.69351774, 0.053613503, -0.71844184, -0.06898739, 0.9975866, 0.007850551, 0.71712875, 0.04411919, 0.6955429, -220.20477, -56.943832, 8.048951)
 
-[node name="straw39" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw39" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.70308733, -0.010121574, -0.71103156, -0.07849809, 0.99268305, -0.091751926, 0.7067576, 0.12032448, 0.69714844, -223.42204, -57.029312, 11.073337)
 
-[node name="straw40" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw40" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.806611, -0.04836219, -0.5891009, -0.06301314, 0.983932, -0.16705498, 0.58771425, 0.17186971, 0.7906029, -226.63704, -57.446674, 14.246165)
 
-[node name="straw41" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw41" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.74975467, 0.0081982985, -0.6616651, -0.081191756, 0.9935078, -0.07969114, 0.65671587, 0.11347086, 0.7455527, -229.36906, -57.754105, 17.468294)
 
-[node name="straw42" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw42" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.9130424, 0.05623782, -0.40396887, -0.070362546, 0.9973174, -0.020192493, 0.40174955, 0.046861142, 0.91455007, -231.7766, -57.76738, 21.320654)
 
-[node name="straw43" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw43" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.9130424, 0.05623782, -0.40396887, -0.070362546, 0.9973174, -0.020192493, 0.40174955, 0.046861142, 0.91455007, -233.48369, -57.85271, 25.185364)
 
-[node name="straw44" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw44" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.9244998, 0.05623782, -0.3770111, -0.06973991, 0.9973173, -0.022247877, 0.37474853, 0.046861134, 0.92594165, -235.15717, -57.934364, 28.931509)
 
-[node name="straw45" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw45" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.94383687, 0.056237817, -0.32559064, -0.06841065, 0.9973175, -0.026050078, 0.32325217, 0.046861142, 0.94515216, -236.83356, -58.0372, 33.13199)
 
-[node name="straw46" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw46" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.918689, -0.027894653, 0.3939959, -0.0009914609, 0.99733746, 0.0729232, -0.39498076, -0.06738424, 0.916215, -199.76477, -65.319885, 90.79054)
 
-[node name="straw47" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw47" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.9952923, -0.017186224, 0.09538475, 0.021451658, 0.9988071, -0.043872766, -0.094516754, 0.045712583, 0.99447334, -198.61711, -65.31943, 95.09278)
 
-[node name="straw48" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw48" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.9998516, -0.017186224, 0.0013310388, 0.017229237, 0.9988071, -0.04569622, -0.0005439371, 0.045712583, 0.9989546, -197.86115, -65.499344, 99.30809)
 
-[node name="straw49" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw49" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.9870721, -0.017186224, -0.15935329, 0.009662338, 0.9988071, -0.047870945, 0.15998605, 0.045712583, 0.9860604, -198.24196, -65.31902, 103.72587)
 
-[node name="straw53" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw53" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.9159804, 0.015577565, -0.40092057, 0.0026545865, 0.9989891, 0.044879973, 0.40121454, -0.042173207, 0.91501296, -199.69434, -65.13306, 108.211266)
 
-[node name="straw54" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw54" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.8484739, 0.015577566, -0.529008, 0.009108529, 0.99898905, 0.04402607, 0.52915907, -0.042173207, 0.8474742, -201.34294, -64.94851, 111.97386)
 
-[node name="straw50" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw50" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.9870721, -0.0034476076, -0.16024029, 0.009662335, 0.99923056, 0.03802012, 0.15998605, -0.03907667, 0.98634565, -197.82161, -63.138973, 101.000786)
 
-[node name="straw51" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw51" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.9848472, -0.003447609, 0.17339107, -0.0033826854, 0.9992306, 0.039082527, -0.1733922, -0.03907667, 0.98407745, -198.34248, -63.31723, 96.488556)
 
-[node name="straw52" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw52" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.9848472, -0.003447609, 0.17339107, -0.0033826854, 0.9992306, 0.039082527, -0.1733922, -0.03907667, 0.98407745, -198.00156, -61.17892, 98.38331)
 
-[node name="straw37" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw37" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.59505546, 0.053613506, -0.8018944, -0.06739851, 0.9975866, 0.0166834, 0.80085343, 0.04411919, 0.59723306, -218.18364, -54.85909, 6.294911)
 
-[node name="straw38" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw38" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.3271707, 0.053613503, -0.94344324, -0.05929265, 0.9975866, 0.036128767, 0.94310313, 0.04411919, 0.3295601, -202.68626, -56.682224, -0.32772535)
 
-[node name="straw29" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw29" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(-0.06770364, 0.0008916799, -0.99770504, -0.14865455, 0.98882836, 0.010971613, 0.98656887, 0.1490564, -0.066814706, -200.50085, -58.760464, -0.80319864)
 
-[node name="straw30" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw30" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(-0.14021179, 0.0008916799, -0.9901211, -0.14746018, 0.98882836, 0.021772737, 0.97907937, 0.1490564, -0.13851386, -196.27534, -58.80693, -0.5202179)
 
-[node name="straw31" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw31" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(-0.2917008, 0.050691757, -0.95516545, -0.14852132, 0.98408264, 0.09758407, 0.94490874, 0.17032792, -0.27952883, -192.08237, -59.088852, 0.35656822)
 
-[node name="straw32" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw32" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(-0.42399034, 0.12722805, -0.8966857, -0.13320988, 0.9705544, 0.20069656, 0.89581686, 0.2045409, -0.39455757, -188.17812, -59.68534, 1.4266223)
 
-[node name="straw27" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw27" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(-0.71435446, -0.107656695, -0.6914534, -0.062291585, 0.9939554, -0.09040001, 0.6970061, -0.021505926, -0.7167426, -148.36, -64.78291, 54.973427)
 
-[node name="straw24" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw24" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(-0.33721474, -0.14185198, -0.9306795, -0.032977946, 0.98975617, -0.13890713, 0.94085, -0.016149484, -0.33843827, -140.89568, -63.551018, 59.56208)
 
-[node name="straw13" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw13" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.45558554, -0.32524344, -0.8286485, -0.22158447, 0.8601321, -0.45942637, 0.8621729, 0.39292404, 0.31979513, -49.423622, -36.19299, 45.059193)
 
-[node name="straw12" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw12" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.50620604, -0.156388, -0.84811455, -0.39396998, 0.83287567, -0.38872308, 0.76716566, 0.53090584, 0.35999468, -47.436615, -37.584095, 43.745747)
 
-[node name="straw14" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw14" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.5587877, -0.15638798, -0.8144318, -0.36861873, 0.8328757, -0.41284162, 0.742884, 0.53090584, 0.4077533, -43.820038, -35.926483, 42.21064)
 
-[node name="straw10" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw10" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.8313293, -0.33534098, -0.44321322, -0.114942625, 0.6764836, -0.7274325, 0.5437645, 0.6556804, 0.5238357, -9.885447, -14.343073, 22.428802)
 
-[node name="straw5" parent="props/track_3/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw5" parent="props/track_3/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.6036656, -0.41339165, -0.6816855, -0.083660655, 0.8174909, -0.569833, 0.7928359, 0.40101895, 0.45890656, -13.994995, -3.14022, 7.336183)
 
-[node name="Goal" parent="props/track_3" instance=ExtResource("4_qcsse")]
+[node name="Goal" parent="props/track_3" instance=ExtResource("6_k3nx4")]
 transform = Transform3D(-0.8022725, 0.04483995, 0.5952716, 0.05580408, 0.99844176, 0, -0.59434396, 0.03321858, -0.8035246, -210.64679, -63.608917, 112.28323)
 
 [node name="track_4" type="Node3D" parent="props"]
@@ -352,200 +378,205 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.52954, 141.59764, 160.354
 
 [node name="strawbales" type="Node3D" parent="props/track_4"]
 
-[node name="straw" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.90927595, -0.40121233, 0.11066136, 0.38910162, 0.9138501, 0.11609452, -0.14770645, -0.06250344, 0.9870543, 5.5423946, 4.337447, -4.501749)
 
-[node name="straw9" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw9" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.9138146, -0.38648182, -0.12479836, 0.40402338, 0.8963569, 0.18250915, 0.04132737, -0.21720098, 0.97525173, -4.070439, -0.96437395, -2.7768786)
 
-[node name="straw10" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw10" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.9222487, -0.38648182, 0.0094377175, 0.37318233, 0.8963569, 0.23933128, -0.100956745, -0.21720096, 0.9708922, -3.5459003, -1.8150148, -7.220701)
 
-[node name="straw11" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw11" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.9164803, -0.3765852, 0.13508397, 0.33479807, 0.9067451, 0.25636682, -0.21903065, -0.18972927, 0.95709383, -3.7365012, -2.6060398, -11.54318)
 
-[node name="straw12" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw12" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.92632055, -0.37658516, -0.010675758, 0.3709384, 0.906745, 0.20054531, -0.06584217, -0.18972927, 0.97962636, -3.6857736, -3.4794343, -15.817953)
 
-[node name="straw13" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw13" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.92225015, -0.38601056, -0.021218259, 0.3832658, 0.90574735, 0.1809119, -0.05061551, -0.17497827, 0.98327035, -3.816126, -4.1701064, -19.93577)
 
-[node name="straw15" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw15" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.9222092, -0.38601053, 0.022925254, 0.3741724, 0.90574735, 0.19903967, -0.0975959, -0.17497827, 0.9797232, -4.670963, -1.8673911, -18.075115)
 
-[node name="straw14" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw14" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.9222502, -0.37881848, -0.07714225, 0.38326576, 0.86979806, 0.31073898, -0.05061551, -0.31614512, 0.9473597, -3.5970392, -5.230707, -23.97482)
 
-[node name="straw16" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw16" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.9309568, -0.36442578, -0.022653043, 0.3229416, 0.7928561, 0.5168054, -0.17037672, -0.4884392, 0.85580313, -3.5972738, -6.931205, -27.724464)
 
-[node name="straw17" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw17" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.92001384, -0.37727308, 0.10601674, 0.22525057, 0.73046774, 0.6447316, -0.3206818, -0.56928176, 0.7570215, -4.000459, -9.354949, -31.054586)
 
-[node name="straw18" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw18" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.91080445, -0.37727302, 0.16763094, 0.18139452, 0.73046774, 0.6584168, -0.37085208, -0.56928176, 0.7337487, -4.5643206, -12.138731, -34.252888)
 
-[node name="straw19" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw19" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.91102594, -0.377273, 0.16642265, 0.18226771, 0.73046774, 0.6581756, -0.3698785, -0.56928176, 0.73423994, -5.656549, -15.127397, -37.363922)
 
-[node name="straw20" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw20" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.91102594, -0.377273, 0.16642265, 0.18226771, 0.73046774, 0.6581756, -0.3698785, -0.56928176, 0.73423994, -6.352872, -18.038826, -40.9533)
 
-[node name="straw21" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw21" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.7694016, -0.37727305, 0.5154474, -0.09490696, 0.73046774, 0.67632025, -0.63167536, -0.5692818, 0.5262174, -12.783146, -66.5256, -86.6841)
 
-[node name="straw23" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw23" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.7058015, -0.34212857, 0.62031615, -0.15891415, 0.77686393, 0.609285, -0.6903553, -0.52861154, 0.4939427, -15.101526, -69.536095, -89.27973)
 
-[node name="straw24" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw24" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.6165211, -0.40279964, 0.6765013, -0.23498209, 0.72593147, 0.6463793, -0.7514553, -0.55747247, 0.35290152, -17.994663, -71.99475, -91.281364)
 
-[node name="straw25" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw25" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.58009785, -0.40279964, 0.7079821, -0.26864365, 0.72593147, 0.6331298, -0.7689714, -0.55747247, 0.31290185, -21.101288, -74.96305, -92.901955)
 
-[node name="straw26" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw26" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.58009785, -0.40279964, 0.7079821, -0.26864365, 0.72593147, 0.6331298, -0.7689714, -0.55747247, 0.31290185, -24.402662, -77.91538, -94.36104)
 
-[node name="straw28" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw28" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.4981981, -0.3023023, 0.8126573, -0.32215706, 0.80562013, 0.49718228, -0.8049929, -0.5094987, 0.30396968, -27.779657, -80.52795, -95.855446)
 
-[node name="straw29" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw29" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.95095193, -0.30780658, 0.030746646, 0.29167515, 0.9253173, 0.2423077, -0.10303432, -0.22145522, 0.96971196, -74.74569, -109.26168, -113.42281)
 
-[node name="straw32" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw32" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.94297206, -0.29367137, 0.1567178, 0.26568577, 0.9476442, 0.17714664, -0.20053567, -0.12540703, 0.97162664, -75.43701, -110.26362, -117.39118)
 
-[node name="straw33" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw33" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.942972, -0.27401298, 0.18899801, 0.26568577, 0.96161693, 0.06858047, -0.20053567, -0.014455788, 0.97957957, -76.197975, -110.92888, -121.85079)
 
-[node name="straw37" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw37" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.9605968, -0.27401298, 0.04658626, 0.27293262, 0.961617, 0.028284848, -0.052548543, -0.014455789, 0.9985136, -76.76129, -111.15501, -126.21553)
 
-[node name="straw38" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw38" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.9578291, -0.274013, -0.086486496, 0.27422395, 0.961617, -0.009668959, 0.08581637, -0.014455787, 0.996206, -76.515144, -111.14999, -130.5475)
 
-[node name="straw39" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw39" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.9533936, 0.24542269, 0.17552316, -0.23550919, 0.9689292, -0.07557021, -0.18861619, 0.030710446, 0.98157054, -62.37563, -111.06463, -182.84058)
 
-[node name="straw40" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw40" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.8570883, 0.24542269, 0.45295388, -0.20207417, 0.9689292, -0.14262374, -0.47388345, 0.030710442, 0.8800518, -63.90835, -110.537, -187.23878)
 
-[node name="straw41" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw41" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.8570883, 0.18193993, 0.48197243, -0.20207417, 0.97931516, -0.010335177, -0.47388345, -0.08853638, 0.87612534, -65.756615, -110.243835, -191.12943)
 
-[node name="straw42" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw42" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.8570883, 0.18193993, 0.48197243, -0.20207417, 0.97931516, -0.010335177, -0.47388345, -0.08853638, 0.87612534, -67.79066, -110.20022, -194.8269)
 
-[node name="straw44" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw44" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.8073983, 0.18193993, 0.5612538, -0.20017706, 0.97931516, -0.029494867, -0.5550108, -0.08853638, 0.827118, -69.782074, -110.15752, -198.44688)
 
-[node name="straw45" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw45" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.71483094, -0.0074788053, 0.6992575, -0.17176655, 0.9674305, 0.1859389, -0.67787385, -0.25302416, 0.6902649, -72.08135, -110.599754, -202.01631)
 
-[node name="straw46" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw46" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.65072924, -0.007478805, 0.75927305, -0.18741661, 0.9674305, 0.17015296, -0.73581684, -0.25302416, 0.6281339, -75.171555, -111.359985, -204.96056)
 
-[node name="straw47" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw47" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.5423484, -0.08784984, 0.8355482, -0.22284627, 0.943853, 0.24388486, -0.8100603, -0.31846952, 0.4923202, -78.50442, -112.29403, -207.6701)
 
-[node name="straw48" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw48" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.3739872, -0.089541286, 0.92310137, -0.26543674, 0.9433572, 0.19904552, -0.88863766, -0.3194656, 0.32903597, -82.5444, -113.09955, -209.54553)
 
-[node name="straw49" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw49" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.28410932, -0.19463497, 0.9388286, -0.29388815, 0.9143665, 0.27850023, -0.91263986, -0.35503522, 0.20257904, -86.567184, -114.18193, -210.91522)
 
-[node name="straw50" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw50" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.112380594, -0.19463497, 0.97441655, -0.33878624, 0.9143665, 0.2217127, -0.9341275, -0.35503522, 0.036817238, -90.68958, -115.29473, -211.52121)
 
-[node name="straw51" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw51" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.120752275, -0.075744376, 0.98978865, -0.34448463, 0.9319241, 0.1133424, -0.9309936, -0.35465342, 0.08643906, -95.02371, -116.06416, -211.7166)
 
-[node name="straw52" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw52" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.08334381, -0.07574437, 0.993638, -0.3485135, 0.9319241, 0.10027208, -0.93359095, -0.35465342, 0.051272027, -99.43033, -116.56877, -212.10143)
 
-[node name="straw53" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw53" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.083343804, -0.16936341, 0.98202324, -0.3485135, 0.9182665, 0.18794565, -0.93359095, -0.35791257, 0.017506238, -103.677414, -116.93609, -212.34344)
 
-[node name="straw55" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw55" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.08334382, -0.29426688, 0.95208234, -0.3485135, 0.88646495, 0.30449435, -0.93359107, -0.35719135, -0.028674785, -107.74368, -117.86443, -212.3599)
 
-[node name="straw56" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw56" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.08334382, -0.20634077, 0.9749242, -0.3485135, 0.91051096, 0.22250125, -0.933591, -0.35831845, 0.003972739, -112.24645, -118.98911, -212.34203)
 
-[node name="straw57" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw57" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.19123022, -0.24907926, 0.9494159, -0.32161212, 0.8979687, 0.3003608, -0.92736006, -0.36278182, 0.0916117, -116.481964, -120.10397, -212.40063)
 
-[node name="straw58" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw58" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.19123021, -0.34129223, 0.9202992, -0.32161215, 0.8640556, 0.38726267, -0.92736006, -0.37003577, 0.055469655, -120.47898, -121.563194, -212.71878)
 
-[node name="straw59" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw59" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.31502455, -0.34129226, 0.8855953, -0.26575813, 0.8640556, 0.427527, -0.9111159, -0.37003577, 0.18149745, -124.18875, -123.516754, -213.85886)
 
-[node name="straw60" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw60" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.61537063, -0.5310638, 0.5824862, -0.13249633, 0.6587667, 0.74058765, -0.77702236, -0.5329132, 0.33502173, -132.6843, -123.561035, -204.41316)
 
-[node name="straw61" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw61" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.4054893, -0.39809206, 0.8228618, -0.28824985, 0.79857343, 0.5283855, -0.86746216, -0.45144448, 0.2090629, -129.61327, -120.96991, -203.16911)
 
-[node name="straw62" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw62" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.2156464, -0.3980921, 0.8916388, -0.396864, 0.7985735, 0.45252427, -0.8921859, -0.45144448, 0.014220864, -125.9085, -118.760574, -202.52788)
 
-[node name="straw63" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw63" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.17260319, -0.3980921, 0.90096134, -0.4181258, 0.7985735, 0.43295503, -0.89184034, -0.45144448, -0.028616492, -122.1054, -116.70576, -202.24669)
 
-[node name="straw64" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw64" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.020974383, -0.3548239, 0.9346982, -0.4840684, 0.81440914, 0.32002282, -0.87477887, -0.45916986, -0.1546776, -118.0164, -114.83685, -202.64491)
 
-[node name="straw65" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw65" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.02097438, -0.21242838, 0.97695184, -0.48406836, 0.8528344, 0.19583249, -0.87477887, -0.4770187, -0.08494244, -113.9118, -113.7, -203.1756)
 
-[node name="straw54" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw54" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.08334381, -0.07574437, 0.993638, -0.3485135, 0.9319241, 0.10027208, -0.93359095, -0.35465342, 0.051272027, -101.02125, -114.64413, -212.96193)
 
-[node name="straw43" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw43" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.8570883, 0.18193993, 0.48197243, -0.20207417, 0.97931516, -0.010335177, -0.47388345, -0.08853638, 0.87612534, -66.43932, -108.19944, -193.236)
 
-[node name="straw34" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw34" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.942972, -0.28369004, 0.17413591, 0.26568577, 0.9565995, 0.11969856, -0.20053567, -0.06660736, 0.9774194, -76.378395, -108.702225, -119.74909)
 
-[node name="straw35" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw35" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.942972, -0.30272728, 0.13841802, 0.26568577, 0.9350005, 0.23491333, -0.20053566, -0.18474135, 0.96211016, -75.720604, -107.6802, -115.301865)
 
-[node name="straw36" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw36" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.90831923, -0.30272725, 0.28863776, 0.22433606, 0.9350005, 0.27467525, -0.35302827, -0.18474135, 0.91719216, -76.8709, -106.355034, -117.87614)
 
-[node name="straw30" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw30" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.8935123, -0.33749804, 0.29619354, 0.20114398, 0.89056146, 0.40797144, -0.40146828, -0.3049503, 0.86361355, -74.023094, -107.76125, -109.30792)
 
-[node name="straw31" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw31" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.8935123, -0.33749804, 0.29619354, 0.20114398, 0.89056146, 0.40797144, -0.40146828, -0.3049503, 0.86361355, -72.758705, -106.01971, -105.62132)
 
-[node name="straw27" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw27" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.65308815, -0.40279964, 0.64127076, -0.19877516, 0.72593147, 0.6584157, -0.7307286, -0.55747247, 0.3940308, -20.522789, -71.9471, -93.51918)
 
-[node name="straw22" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw22" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.8089314, -0.37727302, 0.4508823, -0.03934963, 0.73046774, 0.6818124, -0.5865847, -0.5692818, 0.57605296, -10.629962, -63.595535, -84.35138)
 
-[node name="straw2" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw2" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.92513645, -0.37280178, -0.07170465, 0.37928814, 0.91572654, 0.13261005, 0.016224593, -0.1498791, 0.9885712, 5.7851644, 3.7648904, -8.961511)
 
-[node name="straw3" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw3" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.9892789, -0.1154957, -0.08937635, 0.13283847, 0.96592224, 0.22214429, 0.060673915, -0.23163524, 0.9709087, 5.758722, 2.9203155, -13.147957)
 
-[node name="straw4" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw4" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.9990629, 0.030189876, -0.031019863, -0.023136778, 0.97811455, 0.20677659, 0.036583588, -0.20586514, 0.97789633, 5.597363, 2.0485168, -17.624163)
 
-[node name="straw5" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw5" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.99906284, 0.03464361, -0.025951494, -0.023136778, 0.9340989, 0.35626367, 0.036583588, -0.35532936, 0.93402505, 5.937162, 0.8399353, -21.749937)
 
-[node name="straw6" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw6" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.9988463, 0.034643613, -0.033256806, -0.020530859, 0.93409896, 0.35642335, 0.04341301, -0.35532936, 0.9337325, 6.3147764, -0.6185513, -25.54723)
 
-[node name="straw7" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw7" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.9988463, 0.040155366, -0.026338961, -0.02053086, 0.85288584, 0.5216936, 0.04341301, -0.52055097, 0.8527263, 6.4460607, -2.5919719, -29.501087)
 
-[node name="straw8" parent="props/track_4/strawbales" instance=ExtResource("3_ch1wq")]
+[node name="straw8" parent="props/track_4/strawbales" instance=ExtResource("5_8crpl")]
 transform = Transform3D(0.9725563, 0.04015536, 0.2291767, -0.15285279, 0.85288584, 0.49922115, -0.1754151, -0.52055097, 0.83561736, 6.2167826, -4.744071, -33.044834)
 
-[node name="Goal" parent="props/track_4" instance=ExtResource("4_qcsse")]
+[node name="Goal" parent="props/track_4" instance=ExtResource("6_k3nx4")]
 transform = Transform3D(0.64042443, -0.3963766, 0.65783155, -0.09345538, 0.8099437, 0.57901424, -0.76231414, -0.43229267, 0.48166406, -133.65015, -128.40729, -211.83505)
+
+[node name="user_interface" parent="." instance=ExtResource("7_gep4w")]
+
+[editable path="props/track_1/startLine"]
+[editable path="props/track_1/finishLine"]

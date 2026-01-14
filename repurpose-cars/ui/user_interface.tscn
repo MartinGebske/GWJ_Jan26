@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg43wrbx8mt4r"]
+
+[ext_resource type="FontFile" uid="uid://c30oepfxnaieu" path="res://ui/fonts/Slackey-Regular.ttf" id="1_mm06q"]
+[ext_resource type="Script" uid="uid://b8pm7cd54gfrl" path="res://ui/user_interface.gd" id="1_ue2kl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ue2kl"]
+font = ExtResource("1_mm06q")
+font_size = 150
+font_color = Color(0.68927175, 0.37950066, 0.3125407, 1)
+outline_size = 10
+shadow_size = 30
+shadow_color = Color(0, 0, 0, 0.7176471)
+
+[sub_resource type="LabelSettings" id="LabelSettings_r3gyj"]
+font = ExtResource("1_mm06q")
+font_size = 48
+font_color = Color(0.68927175, 0.37950066, 0.3125407, 1)
+outline_size = 5
+
+[node name="user_interface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ue2kl")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Control" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="PromptLabel" type="Label" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "GO!"
+label_settings = SubResource("LabelSettings_ue2kl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="MarginContainer/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Time: 00:00:00"
+label_settings = SubResource("LabelSettings_r3gyj")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cliyfl7maldpi"]
 
-[ext_resource type="Script" uid="uid://dkawvpnn5xm72" path="res://environment/debug/goal.gd" id="1_ib61f"]
+[ext_resource type="Script" uid="uid://dkawvpnn5xm72" path="res://environment/goal.gd" id="1_ib61f"]
 [ext_resource type="PackedScene" uid="uid://b4bumce36njyx" path="res://environment/props/straw/straw.glb" id="2_s6x7o"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ch1wq"]

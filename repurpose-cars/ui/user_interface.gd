@@ -17,7 +17,6 @@ func set_countdown_label(t: String) -> void:
 	prompt_label.text = t
 
 func set_laptime_label(t: String) -> void:
-	if time_label:
-		time_label.text = t
-	else:
-		print("Time label ist nicht da?!")
+	if not time_label:
+		time_label = $MarginContainer/Control/TimeLabel
+	time_label.text = t

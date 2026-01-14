@@ -28,8 +28,12 @@ func start_new_game() -> void:
 	print("selected track: ", current_track)
 	freeze_player()
 
+	is_racing = false
 	lap_time = 0.0
 	player_is_in_goal = false
+
+	player.can_drive = true
+	player.max_speed = 20.0
 
 	# Disable each track except the active track
 	for track in tracks:
@@ -48,7 +52,10 @@ func start_new_game() -> void:
 # Just holds the player in one place
 func freeze_player() -> void:
 	player.freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
+	player.linear_velocity = Vector3.ZERO
+	player.angular_velocity = Vector3.ZERO
 	player.freeze = true
+	player.reset_physics_interpolation()
 
 
 # is used for counting the time
@@ -66,6 +73,14 @@ func start_ride() -> void:
 
 
 func player_in_goal() -> void:
+
+
+	if player_is_in_goal:
+		return
+	if not is_racing:
+		return
+	anim_player.play("turntable")
+	freeze_player()
 	is_racing = false
 	player_is_in_goal = true
 	lap_time = current_time
@@ -86,7 +101,15 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func initialize(track: int) -> void:
 	current_track = track
+
+	player.freeze = true
+	player.freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
+
+	player.linear_velocity = Vector3.ZERO
+	player.angular_velocity = Vector3.ZERO
+
 	player.global_transform = track_starting_points[track].global_transform
+	player.reset_physics_interpolation()
 	start_new_game()
 
 

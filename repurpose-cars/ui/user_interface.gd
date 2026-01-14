@@ -6,6 +6,7 @@ extends Control
 func _ready() -> void:
 	prompt_label.text = ""
 
+
 func finish_race() -> void:
 	prompt_label.text = "FINISH!"
 	await get_tree().create_timer(3.0).timeout
@@ -16,4 +17,7 @@ func set_countdown_label(t: String) -> void:
 	prompt_label.text = t
 
 func set_laptime_label(t: String) -> void:
-	time_label.text = t
+	if time_label:
+		time_label.text = t
+	else:
+		print("Time label ist nicht da?!")

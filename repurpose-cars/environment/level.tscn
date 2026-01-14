@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjyqu2rl8ctpv"]
+[gd_scene load_steps=4 format=3 uid="uid://bjyqu2rl8ctpv"]
 
 [ext_resource type="PackedScene" uid="uid://b64l1sqk2cacw" path="res://environment/world.glb" id="1_hjwoo"]
-[ext_resource type="Script" uid="uid://fjrhdw0sigx2" path="res://environment/level.gd" id="1_vfqff"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vfqff"]
 friction = 0.25
@@ -11,7 +10,6 @@ absorbent = true
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_alcuw"]
 
 [node name="level" type="Node3D"]
-script = ExtResource("1_vfqff")
 
 [node name="worldmesh" parent="." instance=ExtResource("1_hjwoo")]
 

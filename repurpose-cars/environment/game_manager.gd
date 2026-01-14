@@ -18,8 +18,8 @@ var player_is_in_goal := false
 @onready var anim_player: AnimationPlayer = player.get_node("AnimationPlayer")
 
 func _ready() -> void:
-	current_track = 0
-	start_new_game()
+	freeze_player()
+
 
 func start_new_game() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -86,17 +86,6 @@ func player_in_goal() -> void:
 	lap_time = current_time
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	user_interface.finish_race()
-
-func _unhandled_input(event: InputEvent) -> void:
-	if not is_racing:
-		if event.is_action_pressed("start1"):
-			initialize(0)
-		if event.is_action_pressed("start2"):
-			initialize(1)
-		if event.is_action_pressed("start3"):
-			initialize(2)
-		if event.is_action_pressed("start4"):
-			initialize(3)
 
 
 func initialize(track: int) -> void:

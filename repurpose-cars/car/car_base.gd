@@ -7,6 +7,8 @@ extends VehicleBody3D
 @export var max_speed := 20.0
 @export var can_drive := true
 
+@export var reset_counter := 3.0
+
 @onready var wheelholder: Node3D = $SteeringwheelBase/Wheelholder
 
 @onready var game_manager: GameManager = get_node("/root/main/GameManager")
@@ -65,6 +67,13 @@ func is_on_road() -> bool:
 
 func is_upside_down() -> bool:
 	return transform.basis.y.dot(Vector3.UP) < 0.3
+	start_reset_countdown(2.0)
+
+
+func start_reset_countdown(time : float) -> void:
+	await get_tree().create_timer(time).timeout
+	reset_to_road()
+
 
 func find_nearest_road_pos(max_radius := 40.0, step := 3.0) -> Dictionary:
 	var space = get_world_3d().direct_space_state

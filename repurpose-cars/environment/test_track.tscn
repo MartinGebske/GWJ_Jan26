@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://bh43jilfdc0d0"]
+[gd_scene load_steps=16 format=3 uid="uid://bh43jilfdc0d0"]
 
 [ext_resource type="Script" uid="uid://dej5ba1g460ei" path="res://environment/game_manager.gd" id="1_qtquq"]
+[ext_resource type="Texture2D" uid="uid://dlwb8skrm3dh0" path="res://environment/alps_field_4k.hdr" id="2_f8sje"]
 [ext_resource type="VoxelGIData" uid="uid://b65f6bxrqwwhx" path="res://environment/GI data/test_track.VoxelGI_data.res" id="2_mutpj"]
 [ext_resource type="PackedScene" uid="uid://dp1vvehbwnvha" path="res://car/car_base.tscn" id="3_f7782"]
 [ext_resource type="PackedScene" uid="uid://bjyqu2rl8ctpv" path="res://environment/level.tscn" id="4_f8sje"]
@@ -10,13 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://bg43wrbx8mt4r" path="res://ui/user_interface.tscn" id="7_gep4w"]
 [ext_resource type="Texture2D" uid="uid://8s7cqc36d3jy" path="res://environment/props/start_finish/StartFinish_diff.png" id="8_f8sje"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oe6td"]
-sky_top_color = Color(0.1375, 0.31625003, 0.55, 1)
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_8crpl"]
+panorama = ExtResource("2_f8sje")
+energy_multiplier = 0.5
 
 [sub_resource type="Sky" id="Sky_4ym64"]
-sky_material = SubResource("ProceduralSkyMaterial_oe6td")
+sky_material = SubResource("PanoramaSkyMaterial_8crpl")
 
 [sub_resource type="Environment" id="Environment_rbqoj"]
 background_mode = 2

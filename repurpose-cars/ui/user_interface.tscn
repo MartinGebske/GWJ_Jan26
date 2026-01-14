@@ -1,8 +1,27 @@
-[gd_scene load_steps=9 format=3 uid="uid://bg43wrbx8mt4r"]
+[gd_scene load_steps=30 format=3 uid="uid://bg43wrbx8mt4r"]
 
 [ext_resource type="FontFile" uid="uid://c30oepfxnaieu" path="res://ui/fonts/Slackey-Regular.ttf" id="1_mm06q"]
 [ext_resource type="Script" uid="uid://b8pm7cd54gfrl" path="res://ui/user_interface.gd" id="1_ue2kl"]
 [ext_resource type="Texture2D" uid="uid://cdbjcpoqdwr8p" path="res://ui/assets/select_route.png" id="3_r3gyj"]
+[ext_resource type="Material" uid="uid://b4s6k3ade8sf8" path="res://ui/Canvas_Panel_GridContainer.tres" id="4_u38pm"]
+[ext_resource type="Texture2D" uid="uid://cph0kbnii2miy" path="res://ui/assets/icons/icon_paper.png" id="4_wy7nh"]
+[ext_resource type="Texture2D" uid="uid://235fflc2ifm" path="res://ui/assets/icons/icon_paper_selected.png" id="5_bmx2r"]
+[ext_resource type="Texture2D" uid="uid://v4faqsmyg7ko" path="res://ui/assets/icons/icon_paper_hover.png" id="6_fvxh3"]
+[ext_resource type="Texture2D" uid="uid://b6s51cc3wpxky" path="res://ui/assets/icons/icon_pizza.png" id="8_8d2xa"]
+[ext_resource type="Texture2D" uid="uid://dw4acsvttevfv" path="res://ui/assets/icons/icon_pizza_selected.png" id="9_q7oep"]
+[ext_resource type="Texture2D" uid="uid://b0yivwa4jj23h" path="res://ui/assets/icons/icon_pizza_hover.png" id="10_4qdqo"]
+[ext_resource type="Texture2D" uid="uid://bs5er0ms4woh2" path="res://ui/assets/icons/icon_lid.png" id="11_8d2xa"]
+[ext_resource type="Texture2D" uid="uid://dsjlbn0nh1ric" path="res://ui/assets/icons/icon_lid_selected.png" id="11_g8i0k"]
+[ext_resource type="Texture2D" uid="uid://dyvrlixk5o2s4" path="res://ui/assets/icons/icon_lid_hover.png" id="12_ljlia"]
+[ext_resource type="Texture2D" uid="uid://ccstd4ad53krx" path="res://ui/assets/icons/icon_bathtub.png" id="14_qo4mo"]
+[ext_resource type="Texture2D" uid="uid://b5j8bo75rcuk7" path="res://ui/assets/icons/icon_bathtub_selected.png" id="15_la5ji"]
+[ext_resource type="Texture2D" uid="uid://dvh7ep4mdp5q8" path="res://ui/assets/icons/icon_bathtub_hover.png" id="16_n3id3"]
+[ext_resource type="Texture2D" uid="uid://bqg8vxp5fmnrx" path="res://ui/assets/icons/icon_mattress.png" id="17_s8nei"]
+[ext_resource type="Texture2D" uid="uid://bnsjswevqxxmy" path="res://ui/assets/icons/icon_mattress_selected.png" id="18_j5jh6"]
+[ext_resource type="Texture2D" uid="uid://cxc3vnftdcsuw" path="res://ui/assets/icons/icon_mattress_hover.png" id="19_t6vlk"]
+[ext_resource type="Texture2D" uid="uid://ikgnmrlr6lal" path="res://ui/assets/icons/icon_table.png" id="20_vhcft"]
+[ext_resource type="Texture2D" uid="uid://dvtdvebjcwpuv" path="res://ui/assets/icons/icon_table_selected.png" id="21_4us1v"]
+[ext_resource type="Texture2D" uid="uid://ds1hoqqsmjnl" path="res://ui/assets/icons/icon_table_hover.png" id="22_q5828"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ue2kl"]
 font = ExtResource("1_mm06q")
@@ -29,6 +48,14 @@ fill_to = Vector2(1, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_wy7nh"]
 font = ExtResource("1_mm06q")
 font_size = 48
+
+[sub_resource type="Gradient" id="Gradient_c87ru"]
+colors = PackedColorArray(0.14537013, 0.18715763, 0.37689576, 1, 0, 0.4071234, 0.26261783, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nsboo"]
+gradient = SubResource("Gradient_c87ru")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 1)
 
 [node name="user_interface" type="Control"]
 layout_mode = 3
@@ -177,6 +204,100 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Track 4"
 icon_alignment = 1
+
+[node name="car_design" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="background" type="TextureRect" parent="car_design"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_nsboo")
+
+[node name="MarginContainer" type="MarginContainer" parent="car_design/background"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Rounds_Container" type="GridContainer" parent="car_design/background/MarginContainer"]
+material = ExtResource("4_u38pm")
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Paper_Btn" type="TextureButton" parent="car_design/background/MarginContainer/Rounds_Container"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_wy7nh")
+texture_pressed = ExtResource("5_bmx2r")
+texture_hover = ExtResource("6_fvxh3")
+
+[node name="Pizza_Btn" type="TextureButton" parent="car_design/background/MarginContainer/Rounds_Container"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("8_8d2xa")
+texture_pressed = ExtResource("9_q7oep")
+texture_hover = ExtResource("10_4qdqo")
+
+[node name="Lid_Btn" type="TextureButton" parent="car_design/background/MarginContainer/Rounds_Container"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("11_8d2xa")
+texture_pressed = ExtResource("11_g8i0k")
+texture_hover = ExtResource("12_ljlia")
+
+[node name="Chassis_Container" type="GridContainer" parent="car_design/background/MarginContainer"]
+visible = false
+material = ExtResource("4_u38pm")
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Bathtub_Btn" type="TextureButton" parent="car_design/background/MarginContainer/Chassis_Container"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("14_qo4mo")
+texture_pressed = ExtResource("15_la5ji")
+texture_hover = ExtResource("16_n3id3")
+
+[node name="Mattress_Btn" type="TextureButton" parent="car_design/background/MarginContainer/Chassis_Container"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("17_s8nei")
+texture_pressed = ExtResource("18_j5jh6")
+texture_hover = ExtResource("19_t6vlk")
+
+[node name="Table_Btn" type="TextureButton" parent="car_design/background/MarginContainer/Chassis_Container"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("20_vhcft")
+texture_pressed = ExtResource("21_4us1v")
+texture_hover = ExtResource("22_q5828")
 
 [connection signal="pressed" from="level_selection/VBoxContainer/MarginContainer/map/Btn_Track1" to="." method="_on_btn_track_1_pressed"]
 [connection signal="pressed" from="level_selection/VBoxContainer/MarginContainer/map/Btn_Track2" to="." method="_on_btn_track_2_pressed"]

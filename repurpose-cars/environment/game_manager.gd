@@ -25,7 +25,7 @@ func start_new_game() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	user_interface.set_laptime_label(str("TIme: 00:00:00"))
 
-	print("selected track: ", current_track)
+	player.wheelholder.rotation_degrees.y = 0.0
 	freeze_player()
 
 	is_racing = false
@@ -56,7 +56,7 @@ func freeze_player() -> void:
 	player.angular_velocity = Vector3.ZERO
 	player.freeze = true
 	player.reset_physics_interpolation()
-
+	player.can_drive = false
 
 # is used for counting the time
 func _physics_process(delta: float) -> void:
@@ -73,8 +73,6 @@ func start_ride() -> void:
 
 
 func player_in_goal() -> void:
-
-
 	if player_is_in_goal:
 		return
 	if not is_racing:
@@ -86,6 +84,7 @@ func player_in_goal() -> void:
 	lap_time = current_time
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	user_interface.finish_race()
+
 
 
 func initialize(track: int) -> void:

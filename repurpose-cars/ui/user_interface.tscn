@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://bg43wrbx8mt4r"]
+[gd_scene load_steps=38 format=3 uid="uid://bg43wrbx8mt4r"]
 
 [ext_resource type="FontFile" uid="uid://c30oepfxnaieu" path="res://ui/fonts/Slackey-Regular.ttf" id="1_mm06q"]
 [ext_resource type="Script" uid="uid://b8pm7cd54gfrl" path="res://ui/user_interface.gd" id="1_ue2kl"]
 [ext_resource type="Texture2D" uid="uid://cdbjcpoqdwr8p" path="res://ui/assets/select_route.png" id="3_r3gyj"]
+[ext_resource type="Script" uid="uid://c4cykgr2x4rj4" path="res://ui/car_design.gd" id="4_s8nei"]
 [ext_resource type="Material" uid="uid://b4s6k3ade8sf8" path="res://ui/Canvas_Panel_GridContainer.tres" id="4_u38pm"]
 [ext_resource type="Texture2D" uid="uid://cph0kbnii2miy" path="res://ui/assets/icons/icon_paper.png" id="4_wy7nh"]
 [ext_resource type="Texture2D" uid="uid://235fflc2ifm" path="res://ui/assets/icons/icon_paper_selected.png" id="5_bmx2r"]
@@ -22,6 +23,8 @@
 [ext_resource type="Texture2D" uid="uid://ikgnmrlr6lal" path="res://ui/assets/icons/icon_table.png" id="20_vhcft"]
 [ext_resource type="Texture2D" uid="uid://dvtdvebjcwpuv" path="res://ui/assets/icons/icon_table_selected.png" id="21_4us1v"]
 [ext_resource type="Texture2D" uid="uid://ds1hoqqsmjnl" path="res://ui/assets/icons/icon_table_hover.png" id="22_q5828"]
+[ext_resource type="Texture2D" uid="uid://dlwb8skrm3dh0" path="res://environment/alps_field_4k.hdr" id="23_n3id3"]
+[ext_resource type="PackedScene" uid="uid://dp1vvehbwnvha" path="res://car/car_base.tscn" id="24_s8nei"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ue2kl"]
 font = ExtResource("1_mm06q")
@@ -56,6 +59,31 @@ colors = PackedColorArray(0.14537013, 0.18715763, 0.37689576, 1, 0, 0.4071234, 0
 gradient = SubResource("Gradient_c87ru")
 fill_from = Vector2(1, 0)
 fill_to = Vector2(1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_j5jh6"]
+font = ExtResource("1_mm06q")
+font_size = 48
+outline_color = Color(0.68927175, 0.37950066, 0.3125407, 1)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_8crpl"]
+panorama = ExtResource("23_n3id3")
+energy_multiplier = 0.5
+
+[sub_resource type="Sky" id="Sky_4ym64"]
+sky_material = SubResource("PanoramaSkyMaterial_8crpl")
+
+[sub_resource type="Environment" id="Environment_t6vlk"]
+background_mode = 2
+sky = SubResource("Sky_4ym64")
+tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 0.46
+glow_strength = 0.44
+glow_bloom = 0.5
+glow_blend_mode = 0
+
+[sub_resource type="World3D" id="World3D_vhcft"]
+environment = SubResource("Environment_t6vlk")
 
 [node name="user_interface" type="Control"]
 layout_mode = 3
@@ -206,7 +234,6 @@ text = "Track 4"
 icon_alignment = 1
 
 [node name="car_design" type="MarginContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -218,27 +245,77 @@ theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
+script = ExtResource("4_s8nei")
 
 [node name="background" type="TextureRect" parent="car_design"]
 layout_mode = 2
 texture = SubResource("GradientTexture2D_nsboo")
 
 [node name="MarginContainer" type="MarginContainer" parent="car_design/background"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="Rounds_Container" type="GridContainer" parent="car_design/background/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="car_design/background/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="car_design/background/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Assemble your vehicle!"
+label_settings = SubResource("LabelSettings_j5jh6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="car_design/background/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="car_design/background/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+
+[node name="BoxContainer" type="BoxContainer" parent="car_design/background/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="car_design/background/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/BoxContainer"]
+custom_minimum_size = Vector2(1000, 800)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="car_design/background/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/BoxContainer/SubViewportContainer"]
+world_3d = SubResource("World3D_vhcft")
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1000, 800)
+render_target_update_mode = 4
+
+[node name="CarBase" parent="car_design/background/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/BoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("24_s8nei")]
+
+[node name="Camera3D" type="Camera3D" parent="car_design/background/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/BoxContainer/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.27848828, -0.44334784, 0.8519901, -2.3073104e-08, 0.8870834, 0.4616093, -0.9604397, -0.1285528, 0.24704231, 3.4212503, 2.8342793, 1.6086292)
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="car_design/background/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/BoxContainer/SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Rounds_Container" type="GridContainer" parent="car_design/background/MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
 material = ExtResource("4_u38pm")
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="Paper_Btn" type="TextureButton" parent="car_design/background/MarginContainer/Rounds_Container"]
+[node name="Paper_Btn" type="TextureButton" parent="car_design/background/MarginContainer/VBoxContainer/HBoxContainer/Rounds_Container"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -247,7 +324,7 @@ texture_normal = ExtResource("4_wy7nh")
 texture_pressed = ExtResource("5_bmx2r")
 texture_hover = ExtResource("6_fvxh3")
 
-[node name="Pizza_Btn" type="TextureButton" parent="car_design/background/MarginContainer/Rounds_Container"]
+[node name="Pizza_Btn" type="TextureButton" parent="car_design/background/MarginContainer/VBoxContainer/HBoxContainer/Rounds_Container"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -256,7 +333,7 @@ texture_normal = ExtResource("8_8d2xa")
 texture_pressed = ExtResource("9_q7oep")
 texture_hover = ExtResource("10_4qdqo")
 
-[node name="Lid_Btn" type="TextureButton" parent="car_design/background/MarginContainer/Rounds_Container"]
+[node name="Lid_Btn" type="TextureButton" parent="car_design/background/MarginContainer/VBoxContainer/HBoxContainer/Rounds_Container"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -265,14 +342,14 @@ texture_normal = ExtResource("11_8d2xa")
 texture_pressed = ExtResource("11_g8i0k")
 texture_hover = ExtResource("12_ljlia")
 
-[node name="Chassis_Container" type="GridContainer" parent="car_design/background/MarginContainer"]
+[node name="Chassis_Container" type="GridContainer" parent="car_design/background/MarginContainer/VBoxContainer/HBoxContainer"]
 visible = false
 material = ExtResource("4_u38pm")
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="Bathtub_Btn" type="TextureButton" parent="car_design/background/MarginContainer/Chassis_Container"]
+[node name="Bathtub_Btn" type="TextureButton" parent="car_design/background/MarginContainer/VBoxContainer/HBoxContainer/Chassis_Container"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -281,7 +358,7 @@ texture_normal = ExtResource("14_qo4mo")
 texture_pressed = ExtResource("15_la5ji")
 texture_hover = ExtResource("16_n3id3")
 
-[node name="Mattress_Btn" type="TextureButton" parent="car_design/background/MarginContainer/Chassis_Container"]
+[node name="Mattress_Btn" type="TextureButton" parent="car_design/background/MarginContainer/VBoxContainer/HBoxContainer/Chassis_Container"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -290,7 +367,7 @@ texture_normal = ExtResource("17_s8nei")
 texture_pressed = ExtResource("18_j5jh6")
 texture_hover = ExtResource("19_t6vlk")
 
-[node name="Table_Btn" type="TextureButton" parent="car_design/background/MarginContainer/Chassis_Container"]
+[node name="Table_Btn" type="TextureButton" parent="car_design/background/MarginContainer/VBoxContainer/HBoxContainer/Chassis_Container"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -298,6 +375,44 @@ size_flags_vertical = 4
 texture_normal = ExtResource("20_vhcft")
 texture_pressed = ExtResource("21_4us1v")
 texture_hover = ExtResource("22_q5828")
+
+[node name="ButtonContainer" type="HBoxContainer" parent="car_design/background/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+alignment = 1
+
+[node name="Chassis_Btn" type="Button" parent="car_design/background/MarginContainer/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_mm06q")
+theme_override_font_sizes/font_size = 32
+text = "Chassis"
+
+[node name="Wheels_Btn" type="Button" parent="car_design/background/MarginContainer/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_mm06q")
+theme_override_font_sizes/font_size = 32
+text = "Wheels"
+
+[node name="Steering_Btn" type="Button" parent="car_design/background/MarginContainer/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_mm06q")
+theme_override_font_sizes/font_size = 32
+text = "Steering"
+
+[node name="Ready" type="Button" parent="car_design/background/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_mm06q")
+theme_override_font_sizes/font_size = 32
+disabled = true
+text = "Ready"
 
 [connection signal="pressed" from="level_selection/VBoxContainer/MarginContainer/map/Btn_Track1" to="." method="_on_btn_track_1_pressed"]
 [connection signal="pressed" from="level_selection/VBoxContainer/MarginContainer/map/Btn_Track2" to="." method="_on_btn_track_2_pressed"]

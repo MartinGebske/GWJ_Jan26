@@ -487,7 +487,6 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 
 [node name="highscore_label" type="Label" parent="GoalContainer/Panel/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 0

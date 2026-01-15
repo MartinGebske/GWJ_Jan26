@@ -15,6 +15,10 @@ run/main_scene="uid://bh43jilfdc0d0"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+BestTimes="*res://resources/best_times.gd"
+
 [display]
 
 window/size/viewport_width=1920

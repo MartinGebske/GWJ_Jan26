@@ -6,7 +6,7 @@ class_name GameManager
 @export var tracks : Array[Node3D]
 @export var track_starting_points : Array[Node3D]
 @export var active_car_config: CarConfig
-
+@export var goals : Array[Area3D]
 
 var current_track:
 	set(value):
@@ -19,7 +19,8 @@ var player_is_in_goal := false
 
 @onready var anim_player: AnimationPlayer = player.get_node("AnimationPlayer")
 
-@onready var init_cam: Camera3D = $"../Init_Cam"
+# Pre-Game Screen stuff
+@onready var init_cam: Camera3D = %Init_Cam
 @onready var init_canvas: Control = $"../Init_Canvas"
 
 func _ready() -> void:
@@ -74,13 +75,10 @@ func _physics_process(delta: float) -> void:
 		current_time += delta
 		user_interface.set_laptime_label("Time: " + format_time(current_time))
 
-
-
 func start_ride() -> void:
 	player.freeze = false
 	current_time = 0.0  # Reset Timer
 	is_racing = true
-
 
 func player_in_goal() -> void:
 	if player_is_in_goal:
@@ -95,9 +93,22 @@ func player_in_goal() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	user_interface.finish_race()
 	user_interface.set_goal_time_label(str(format_time(current_time)))
+	set_time()
+	var best_time = get_best_time("track_" + str((current_track + 1)))
+	if best_time > 0.0:
+		user_interface.set_highscore_label(str(format_time(best_time)))
+
+func get_best_time(track_id: String) -> float:
+	return BestTimes.get_best_time(track_id)
+
+func set_time() -> void:
+	var track_id := "track_" + str(current_track + 1)
+
+	if BestTimes.check_time(track_id, lap_time):
+		goals[current_track].play_particles()
 
 
-
+# This is the starting setup function for the new race.
 func initialize(track: int) -> void:
 	current_track = track
 

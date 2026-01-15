@@ -64,13 +64,14 @@ point_count = 6
 
 [node name="main" type="Node3D"]
 
-[node name="GameManager" type="Node3D" parent="." node_paths=PackedStringArray("player", "user_interface", "tracks", "track_starting_points")]
+[node name="GameManager" type="Node3D" parent="." node_paths=PackedStringArray("player", "user_interface", "tracks", "track_starting_points", "goals")]
 script = ExtResource("1_qtquq")
 player = NodePath("../CarBase")
 user_interface = NodePath("../user_interface")
 tracks = [NodePath("../props/track_1"), NodePath("../props/track_2"), NodePath("../props/track_3"), NodePath("../props/track_4")]
 track_starting_points = [NodePath("../level/StartTrack_1"), NodePath("../level/StartTrack_2"), NodePath("../level/StartTrack_3"), NodePath("../level/StartTrack_4")]
 active_car_config = SubResource("Resource_k3nx4")
+goals = [NodePath("../props/track_1/Goal"), NodePath("../props/track_2/Goal"), NodePath("../props/track_3/Goal"), NodePath("../props/track_4/Goal")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.898228, -0.43301278, -0.07540873, -0.3089583, 0.49999997, 0.8090395, -0.31262004, 0.75, -0.5828968, 0, 0, 0)
@@ -729,6 +730,7 @@ speed = 10.0
 target = NodePath("../../target")
 
 [node name="Init_Cam" type="Camera3D" parent="Path3D/PathFollow3D"]
+unique_name_in_owner = true
 transform = Transform3D(0.99055004, 0.0017498091, -0.13714176, -0.026682667, 0.9832721, -0.18017837, 0.13453238, 0.18213499, 0.97402686, 0, 0, 0)
 current = true
 

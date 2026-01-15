@@ -2,7 +2,6 @@ extends MarginContainer
 
 @export var car : VehicleBody3D
 
-
 enum category_selected{
 	CHASSIS, WHEELS, STEERING
 }
@@ -72,10 +71,6 @@ func _on_steering_btn_pressed() -> void:
 
 # Selection Buttons
 
-
-
-
-
 # ROUNDS:
 func _on_paper_btn_pressed() -> void:
 	if current_category == category_selected.STEERING:
@@ -111,8 +106,6 @@ func _on_lid_btn_pressed() -> void:
 	check_for_assembly_comlete()
 
 
-
-
 func _on_bathtub_btn_pressed() -> void:
 	if current_category == category_selected.CHASSIS:
 		game_manager.active_car_config.chassis_type = CarConfig.ChassisType.BATHTUB
@@ -135,7 +128,6 @@ func _on_table_btn_pressed() -> void:
 		game_manager.active_car_config.emit_update()
 		chassis_assebled = true
 	check_for_assembly_comlete()
-
 
 func _on_ready_btn_pressed() -> void:
 	self.visible = false

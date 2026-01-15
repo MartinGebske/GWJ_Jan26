@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cliyfl7maldpi"]
+[gd_scene load_steps=9 format=3 uid="uid://cliyfl7maldpi"]
 
 [ext_resource type="Script" uid="uid://dkawvpnn5xm72" path="res://environment/goal.gd" id="1_ib61f"]
 [ext_resource type="PackedScene" uid="uid://b4bumce36njyx" path="res://environment/props/straw/straw.glb" id="2_s6x7o"]
@@ -7,8 +7,41 @@
 height = 13.75415
 radius = 6.51709
 
-[node name="Goal" type="Area3D"]
+[sub_resource type="Curve" id="Curve_opxsl"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.9836066, 0), -1.9898517, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_x4yrk"]
+curve = SubResource("Curve_opxsl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_opxsl"]
+angle_min = 1.0000107
+angle_max = 10.0000105
+inherit_velocity_ratio = 0.575
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+scale_over_velocity_curve = SubResource("CurveTexture_x4yrk")
+sub_emitter_mode = 4
+sub_emitter_amount_at_start = 1
+sub_emitter_keep_velocity = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x4yrk"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.5216262, 1.3515875, 0.64066947, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_eutn6"]
+material = SubResource("StandardMaterial3D_x4yrk")
+
+[node name="Goal" type="Area3D" node_paths=PackedStringArray("particles")]
 script = ExtResource("1_ib61f")
+particles = [NodePath("particles/GPUParticles3D"), NodePath("particles/GPUParticles3D2")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_ch1wq")
@@ -98,3 +131,26 @@ transform = Transform3D(-0.15070894, 0, -0.9885781, 0, 1, 0, 0.9885781, 0, -0.15
 [node name="straw21" parent="strawbales" instance=ExtResource("2_s6x7o")]
 process_mode = 4
 transform = Transform3D(-0.00086604175, 0.18866472, -0.98204106, -0.9999893, -0.0045902384, -1.8626451e-09, -0.004507811, 0.98203075, 0.1886667, -0.468778, 11.80917, -9.267807)
+
+[node name="particles" type="Node3D" parent="."]
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="particles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.155289, 1.089, 0)
+emitting = false
+amount = 30
+one_shot = true
+speed_scale = 2.0
+process_material = SubResource("ParticleProcessMaterial_opxsl")
+draw_pass_1 = SubResource("QuadMesh_eutn6")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="particles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8145223, 1.089, 0)
+emitting = false
+amount = 30
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+randomness = 0.55
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_opxsl")
+draw_pass_1 = SubResource("QuadMesh_eutn6")

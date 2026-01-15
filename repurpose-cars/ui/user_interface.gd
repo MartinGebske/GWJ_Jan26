@@ -8,7 +8,7 @@ extends Control
 
 @onready var game_manager: GameManager = get_node("/root/main/GameManager")
 
-@onready var highscore_label: Label = %highscore_label
+@onready var highscore_label: Label = $GoalContainer/Panel/MarginContainer/VBoxContainer/highscore_label
 @onready var goal_time_label: Label = $GoalContainer/Panel/MarginContainer/VBoxContainer/goal_time_label
 @onready var car_design: MarginContainer = $car_design
 
@@ -41,10 +41,16 @@ func set_laptime_label(t: String) -> void:
 		time_label = $MarginContainer/Control/TimeLabel
 	time_label.text = t
 
+func set_highscore_label(t: String) -> void:
+	if not highscore_label:
+		highscore_label = $GoalContainer/Panel/MarginContainer/VBoxContainer/highscore_label
+	highscore_label.visible = true
+	highscore_label.text = ("Best Time: " + t)
+
 func set_goal_time_label(t: String) -> void:
 	if not goal_time_label:
 		goal_time_label = $GoalContainer/Panel/MarginContainer/VBoxContainer/goal_time_label
-	goal_time_label.text = t
+	goal_time_label.text = ("Your Time: " + t)
 
 func _on_btn_track_1_pressed() -> void:
 	set_track(0)

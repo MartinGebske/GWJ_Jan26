@@ -84,7 +84,8 @@ func _on_paper_btn_pressed() -> void:
 		steering_assembled = true
 
 	if current_category == category_selected.WHEELS:
-		print("Noch keine Wheels da")
+		game_manager.active_car_config.wheel_type = CarConfig.WheelType.TOILETPAPER
+		game_manager.active_car_config.emit_update()
 	check_for_assembly_comlete()
 
 func _on_pizza_btn_pressed() -> void:
@@ -94,7 +95,8 @@ func _on_pizza_btn_pressed() -> void:
 		steering_assembled = true
 
 	if current_category == category_selected.WHEELS:
-		print("Noch keine Wheels da")
+		game_manager.active_car_config.wheel_type = CarConfig.WheelType.PIZZA
+		game_manager.active_car_config.emit_update()
 	check_for_assembly_comlete()
 
 func _on_lid_btn_pressed() -> void:
@@ -104,7 +106,8 @@ func _on_lid_btn_pressed() -> void:
 		steering_assembled = true
 
 	if current_category == category_selected.WHEELS:
-		print("Noch keine Wheels da")
+		game_manager.active_car_config.wheel_type = CarConfig.WheelType.LID
+		game_manager.active_car_config.emit_update()
 	check_for_assembly_comlete()
 
 

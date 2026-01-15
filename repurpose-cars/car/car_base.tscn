@@ -96,6 +96,7 @@ script = ExtResource("1_1q3e4")
 engine_power = 1000
 brake_power = 1
 max_speed = 100.0
+wheel_scenes = Array[PackedScene]([ExtResource("4_58cfw"), ExtResource("3_k6vmd"), ExtResource("6_quhsa")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.43469763, 0.25377417, 0.17536485)
@@ -143,28 +144,28 @@ visible = false
 target_position = Vector3(0, -10, 0)
 
 [node name="wheel_FR" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5021657, 0, 1)
 use_as_steering = true
 
 [node name="lid" parent="wheel_FR" instance=ExtResource("4_58cfw")]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="wheel_FL" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5379121, 0, 1)
 use_as_steering = true
 
 [node name="lid" parent="wheel_FL" instance=ExtResource("4_58cfw")]
 transform = Transform3D(-4.371139e-08, 1, -8.742278e-08, 1, 4.371139e-08, -3.821371e-15, 0, -8.742278e-08, -1, 0, 0, 0)
 
 [node name="wheel_RR" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5021657, 0, -1)
 use_as_traction = true
 
 [node name="lid" parent="wheel_RR" instance=ExtResource("4_58cfw")]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="wheel_RL" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5379121, 0, -1)
 use_as_traction = true
 
 [node name="lid" parent="wheel_RL" instance=ExtResource("4_58cfw")]

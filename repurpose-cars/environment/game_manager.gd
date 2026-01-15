@@ -25,6 +25,7 @@ func _ready() -> void:
 func start_new_game() -> void:
 	var config = active_car_config
 	player.apply_config(config)
+	player.apply_wheels(config)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	user_interface.set_laptime_label(str("TIme: 00:00:00"))
 

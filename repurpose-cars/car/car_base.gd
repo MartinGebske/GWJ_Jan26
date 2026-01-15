@@ -11,6 +11,8 @@ extends VehicleBody3D
 
 @export var reset_counter := 3.0
 
+@export var wheel_scenes : Array[PackedScene]
+
 @onready var wheelholder: Node3D = $SteeringwheelBase/Wheelholder
 @onready var chassis_base: Node3D = $ChassisBase
 
@@ -159,3 +161,32 @@ func apply_config(config: CarConfig):
 			wheelholder.get_node("pizza").show()
 		CarConfig.SteeringType.LID:
 			wheelholder.get_node("lid").show()
+
+func apply_wheels(config: CarConfig):
+	var wheel_nodes = {
+		"Wheel_FR": get_node("wheel_FR"),
+		"Wheel_FL": get_node("wheel_FL"),
+		"Wheel_RR": get_node("wheel_RR"),
+		"Wheel_RL": get_node("wheel_RL")
+	}
+
+	# Alte Children löschen
+	for wn in wheel_nodes.values():
+		for c in wn.get_children():
+			c.queue_free()
+
+	# Richtige PackedScene wählen
+	var index = int(config.wheel_type)
+	var wheel_scene = wheel_scenes[index]
+
+	# Neue Wheel Instances an die Nodes parenten
+	for name in wheel_nodes.keys():
+		var wn = wheel_nodes[name]
+		var instance = wheel_scene.instantiate()
+		wn.add_child(instance)
+
+		# Links drehen
+		if name.ends_with("_FR") or name.ends_with("_RR"):
+			var rot = instance.rotation_degrees
+			rot.y = 180
+			instance.rotation_degrees = rot

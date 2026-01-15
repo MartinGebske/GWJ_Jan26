@@ -80,6 +80,7 @@ func _on_steering_btn_pressed() -> void:
 func _on_paper_btn_pressed() -> void:
 	if current_category == category_selected.STEERING:
 		game_manager.active_car_config.steering_type = CarConfig.SteeringType.TOILETPAPER
+		game_manager.active_car_config.emit_update()
 		steering_assembled = true
 
 	if current_category == category_selected.WHEELS:
@@ -89,6 +90,7 @@ func _on_paper_btn_pressed() -> void:
 func _on_pizza_btn_pressed() -> void:
 	if current_category == category_selected.STEERING:
 		game_manager.active_car_config.steering_type = CarConfig.SteeringType.PIZZA
+		game_manager.active_car_config.emit_update()
 		steering_assembled = true
 
 	if current_category == category_selected.WHEELS:
@@ -98,6 +100,7 @@ func _on_pizza_btn_pressed() -> void:
 func _on_lid_btn_pressed() -> void:
 	if current_category == category_selected.STEERING:
 		game_manager.active_car_config.steering_type = CarConfig.SteeringType.LID
+		game_manager.active_car_config.emit_update()
 		steering_assembled = true
 
 	if current_category == category_selected.WHEELS:
@@ -110,6 +113,7 @@ func _on_lid_btn_pressed() -> void:
 func _on_bathtub_btn_pressed() -> void:
 	if current_category == category_selected.CHASSIS:
 		game_manager.active_car_config.chassis_type = CarConfig.ChassisType.BATHTUB
+		game_manager.active_car_config.emit_update()
 		chassis_assebled = true
 	check_for_assembly_comlete()
 
@@ -117,6 +121,7 @@ func _on_bathtub_btn_pressed() -> void:
 func _on_mattress_btn_pressed() -> void:
 	if current_category == category_selected.CHASSIS:
 		game_manager.active_car_config.chassis_type = CarConfig.ChassisType.MATTRESS
+		game_manager.active_car_config.emit_update()
 		chassis_assebled = true
 	check_for_assembly_comlete()
 
@@ -124,6 +129,7 @@ func _on_mattress_btn_pressed() -> void:
 func _on_table_btn_pressed() -> void:
 	if current_category == category_selected.CHASSIS:
 		game_manager.active_car_config.chassis_type = CarConfig.ChassisType.TABLE
+		game_manager.active_car_config.emit_update()
 		chassis_assebled = true
 	check_for_assembly_comlete()
 

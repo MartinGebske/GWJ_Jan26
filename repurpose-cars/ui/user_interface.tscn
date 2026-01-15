@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bg43wrbx8mt4r"]
+[gd_scene load_steps=40 format=3 uid="uid://bg43wrbx8mt4r"]
 
 [ext_resource type="FontFile" uid="uid://c30oepfxnaieu" path="res://ui/fonts/Slackey-Regular.ttf" id="1_mm06q"]
 [ext_resource type="Script" uid="uid://b8pm7cd54gfrl" path="res://ui/user_interface.gd" id="1_ue2kl"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cph0kbnii2miy" path="res://ui/assets/icons/icon_paper.png" id="4_wy7nh"]
 [ext_resource type="Texture2D" uid="uid://235fflc2ifm" path="res://ui/assets/icons/icon_paper_selected.png" id="5_bmx2r"]
 [ext_resource type="Texture2D" uid="uid://v4faqsmyg7ko" path="res://ui/assets/icons/icon_paper_hover.png" id="6_fvxh3"]
+[ext_resource type="Script" uid="uid://bpo2bkewvmrpe" path="res://car/preview_car.gd" id="7_j5jh6"]
 [ext_resource type="Texture2D" uid="uid://b6s51cc3wpxky" path="res://ui/assets/icons/icon_pizza.png" id="8_8d2xa"]
 [ext_resource type="Texture2D" uid="uid://dw4acsvttevfv" path="res://ui/assets/icons/icon_pizza_selected.png" id="9_q7oep"]
 [ext_resource type="Texture2D" uid="uid://b0yivwa4jj23h" path="res://ui/assets/icons/icon_pizza_hover.png" id="10_4qdqo"]
@@ -312,6 +313,7 @@ render_target_update_mode = 4
 
 [node name="CarBase" parent="car_design/background/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/BoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("24_s8nei")]
 process_mode = 4
+script = ExtResource("7_j5jh6")
 
 [node name="Camera3D" type="Camera3D" parent="car_design/background/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/BoxContainer/SubViewportContainer/SubViewport"]
 transform = Transform3D(0.27848828, -0.44334784, 0.8519901, -2.3073104e-08, 0.8870834, 0.4616093, -0.9604397, -0.1285528, 0.24704231, 3.4212503, 2.8342793, 1.6086292)
@@ -438,3 +440,5 @@ text = "Ready"
 [connection signal="pressed" from="car_design/background/MarginContainer/VBoxContainer/ButtonContainer/Wheels_Btn" to="car_design" method="_on_wheels_btn_pressed"]
 [connection signal="pressed" from="car_design/background/MarginContainer/VBoxContainer/ButtonContainer/Steering_Btn" to="car_design" method="_on_steering_btn_pressed"]
 [connection signal="pressed" from="car_design/background/MarginContainer/VBoxContainer/Ready_Btn" to="car_design" method="_on_ready_btn_pressed"]
+
+[editable path="car_design/background/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/BoxContainer/SubViewportContainer/SubViewport/CarBase"]

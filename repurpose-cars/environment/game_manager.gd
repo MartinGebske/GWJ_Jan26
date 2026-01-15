@@ -19,8 +19,12 @@ var player_is_in_goal := false
 
 @onready var anim_player: AnimationPlayer = player.get_node("AnimationPlayer")
 
+@onready var init_cam: Camera3D = $"../Init_Cam"
+@onready var init_canvas: Control = $"../Init_Canvas"
+
 func _ready() -> void:
 	freeze_player()
+	user_interface.visible = false
 
 func start_new_game() -> void:
 	var config = active_car_config
@@ -88,6 +92,7 @@ func player_in_goal() -> void:
 	lap_time = current_time
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	user_interface.finish_race()
+	user_interface.set_goal_time_label(str(format_time(current_time)))
 
 
 
@@ -123,3 +128,12 @@ func format_time(seconds: float) -> String:
 	var hundredths = int((seconds - int(seconds)) * 100)
 
 	return "%02d:%02d:%02d" % [mins, secs, hundredths]
+
+func quit_game() -> void:
+	get_tree().quit()
+
+func _on_start_game_btn_pressed() -> void:
+	init_canvas.visible = false
+	init_cam.current = false
+	init_cam.visible = false
+	user_interface.visible = true

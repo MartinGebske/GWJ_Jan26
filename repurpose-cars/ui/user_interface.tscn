@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bg43wrbx8mt4r"]
+[gd_scene load_steps=44 format=3 uid="uid://bg43wrbx8mt4r"]
 
 [ext_resource type="FontFile" uid="uid://c30oepfxnaieu" path="res://ui/fonts/Slackey-Regular.ttf" id="1_mm06q"]
 [ext_resource type="Script" uid="uid://b8pm7cd54gfrl" path="res://ui/user_interface.gd" id="1_ue2kl"]
@@ -89,6 +89,32 @@ glow_blend_mode = 0
 
 [sub_resource type="World3D" id="World3D_vhcft"]
 environment = SubResource("Environment_t6vlk")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j5jh6"]
+bg_color = Color(0.04, 0.04, 0.04, 0.5411765)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_t6vlk"]
+font = ExtResource("1_mm06q")
+font_size = 24
+font_color = Color(0.68927175, 0.37950066, 0.3125407, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vhcft"]
+font = ExtResource("1_mm06q")
+font_size = 48
+outline_size = 2
+outline_color = Color(0.68927175, 0.37950066, 0.3125407, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4us1v"]
+bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.68927175, 0.37950066, 0.3125407, 1)
 
 [node name="user_interface" type="Control"]
 layout_mode = 3
@@ -426,6 +452,100 @@ theme_override_fonts/font = ExtResource("1_mm06q")
 theme_override_font_sizes/font_size = 32
 text = "Ready"
 
+[node name="GoalContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Panel" type="Panel" parent="GoalContainer"]
+custom_minimum_size = Vector2(800, 500)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_j5jh6")
+
+[node name="MarginContainer" type="MarginContainer" parent="GoalContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GoalContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="highscore_label" type="Label" parent="GoalContainer/Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+text = "Best Time: 00:00:00"
+label_settings = SubResource("LabelSettings_t6vlk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="goal_time_label" type="Label" parent="GoalContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Time: 00:00:00"
+label_settings = SubResource("LabelSettings_vhcft")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="GoalContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="TryAgain_Btn" type="Button" parent="GoalContainer/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_mm06q")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4us1v")
+text = "Try again"
+
+[node name="TrackSelection_Btn" type="Button" parent="GoalContainer/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_mm06q")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4us1v")
+text = "Track Selection"
+
+[node name="ChangeVehicle_Btn" type="Button" parent="GoalContainer/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_mm06q")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4us1v")
+text = "Re-Assemble Vehicle
+"
+
+[node name="QuitGame_Btn" type="Button" parent="GoalContainer/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_mm06q")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4us1v")
+text = "Quit Game
+"
+
 [connection signal="pressed" from="level_selection/VBoxContainer/MarginContainer/map/Btn_Track1" to="." method="_on_btn_track_1_pressed"]
 [connection signal="pressed" from="level_selection/VBoxContainer/MarginContainer/map/Btn_Track2" to="." method="_on_btn_track_2_pressed"]
 [connection signal="pressed" from="level_selection/VBoxContainer/MarginContainer/map/Btn_Track3" to="." method="_on_btn_track_3_pressed"]
@@ -440,5 +560,9 @@ text = "Ready"
 [connection signal="pressed" from="car_design/background/MarginContainer/VBoxContainer/ButtonContainer/Wheels_Btn" to="car_design" method="_on_wheels_btn_pressed"]
 [connection signal="pressed" from="car_design/background/MarginContainer/VBoxContainer/ButtonContainer/Steering_Btn" to="car_design" method="_on_steering_btn_pressed"]
 [connection signal="pressed" from="car_design/background/MarginContainer/VBoxContainer/Ready_Btn" to="car_design" method="_on_ready_btn_pressed"]
+[connection signal="pressed" from="GoalContainer/Panel/MarginContainer/VBoxContainer/TryAgain_Btn" to="." method="_on_try_again_btn_pressed"]
+[connection signal="pressed" from="GoalContainer/Panel/MarginContainer/VBoxContainer/TrackSelection_Btn" to="." method="_on_track_selection_btn_pressed"]
+[connection signal="pressed" from="GoalContainer/Panel/MarginContainer/VBoxContainer/ChangeVehicle_Btn" to="." method="_on_change_vehicle_btn_pressed"]
+[connection signal="pressed" from="GoalContainer/Panel/MarginContainer/VBoxContainer/QuitGame_Btn" to="." method="_on_quit_game_btn_pressed"]
 
 [editable path="car_design/background/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/BoxContainer/SubViewportContainer/SubViewport/CarBase"]

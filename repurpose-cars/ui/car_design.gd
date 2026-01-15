@@ -49,6 +49,7 @@ func assembly_completed() -> bool:
 # Category Buttons:
 
 func _on_chassis_btn_pressed() -> void:
+	AudioManager.play_click_audio()
 	if rounds_container.visible:
 		rounds_container.visible = false
 	chassis_container.visible = true
@@ -56,6 +57,7 @@ func _on_chassis_btn_pressed() -> void:
 	current_category = category_selected.CHASSIS
 
 func _on_wheels_btn_pressed() -> void:
+	AudioManager.play_click_audio()
 	if chassis_container.visible:
 		chassis_container.visible = false
 	rounds_container.visible = true
@@ -63,16 +65,19 @@ func _on_wheels_btn_pressed() -> void:
 	current_category = category_selected.WHEELS
 
 func _on_steering_btn_pressed() -> void:
+	AudioManager.play_click_audio()
 	if chassis_container.visible:
 		chassis_container.visible = false
 	rounds_container.visible = true
 	state_label.text = "Assemble: Steering"
 	current_category = category_selected.STEERING
 
+
 # Selection Buttons
 
 # ROUNDS:
 func _on_paper_btn_pressed() -> void:
+	AudioManager.play_click_audio()
 	if current_category == category_selected.STEERING:
 		game_manager.active_car_config.steering_type = CarConfig.SteeringType.TOILETPAPER
 		game_manager.active_car_config.emit_update()
@@ -84,6 +89,7 @@ func _on_paper_btn_pressed() -> void:
 	check_for_assembly_comlete()
 
 func _on_pizza_btn_pressed() -> void:
+	AudioManager.play_click_audio()
 	if current_category == category_selected.STEERING:
 		game_manager.active_car_config.steering_type = CarConfig.SteeringType.PIZZA
 		game_manager.active_car_config.emit_update()
@@ -95,6 +101,7 @@ func _on_pizza_btn_pressed() -> void:
 	check_for_assembly_comlete()
 
 func _on_lid_btn_pressed() -> void:
+	AudioManager.play_click_audio()
 	if current_category == category_selected.STEERING:
 		game_manager.active_car_config.steering_type = CarConfig.SteeringType.LID
 		game_manager.active_car_config.emit_update()
@@ -107,6 +114,7 @@ func _on_lid_btn_pressed() -> void:
 
 
 func _on_bathtub_btn_pressed() -> void:
+	AudioManager.play_click_audio()
 	if current_category == category_selected.CHASSIS:
 		game_manager.active_car_config.chassis_type = CarConfig.ChassisType.BATHTUB
 		game_manager.active_car_config.emit_update()
@@ -115,6 +123,7 @@ func _on_bathtub_btn_pressed() -> void:
 
 
 func _on_mattress_btn_pressed() -> void:
+	AudioManager.play_click_audio()
 	if current_category == category_selected.CHASSIS:
 		game_manager.active_car_config.chassis_type = CarConfig.ChassisType.MATTRESS
 		game_manager.active_car_config.emit_update()
@@ -123,6 +132,7 @@ func _on_mattress_btn_pressed() -> void:
 
 
 func _on_table_btn_pressed() -> void:
+	AudioManager.play_click_audio()
 	if current_category == category_selected.CHASSIS:
 		game_manager.active_car_config.chassis_type = CarConfig.ChassisType.TABLE
 		game_manager.active_car_config.emit_update()
@@ -130,4 +140,5 @@ func _on_table_btn_pressed() -> void:
 	check_for_assembly_comlete()
 
 func _on_ready_btn_pressed() -> void:
+	AudioManager.play_click_audio()
 	self.visible = false

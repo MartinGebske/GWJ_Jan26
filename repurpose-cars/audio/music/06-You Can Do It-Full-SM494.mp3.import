@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c824ou71q8po4"
+path="res://.godot/imported/06-You Can Do It-Full-SM494.mp3-177897a91fd807f9fe8e8e91f9467e36.mp3str"
+
+[deps]
+
+source_file="res://audio/music/06-You Can Do It-Full-SM494.mp3"
+dest_files=["res://.godot/imported/06-You Can Do It-Full-SM494.mp3-177897a91fd807f9fe8e8e91f9467e36.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -487,7 +487,6 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 
 [node name="highscore_label" type="Label" parent="GoalContainer/Panel/MarginContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 0
 text = "Best Time: 00:00:00"
@@ -505,7 +504,7 @@ vertical_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="GoalContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 100
+theme_override_constants/separation = 50
 
 [node name="TryAgain_Btn" type="Button" parent="GoalContainer/Panel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 70)

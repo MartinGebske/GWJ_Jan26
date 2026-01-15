@@ -53,34 +53,41 @@ func set_goal_time_label(t: String) -> void:
 	goal_time_label.text = ("Your Time: " + t)
 
 func _on_btn_track_1_pressed() -> void:
+	AudioManager.play_click_audio()
 	set_track(0)
 	current_track = 0
 
 func _on_btn_track_2_pressed() -> void:
+	AudioManager.play_click_audio()
 	set_track(1)
 	current_track = 1
 
 func _on_btn_track_3_pressed() -> void:
+	AudioManager.play_click_audio()
 	set_track(2)
 	current_track = 2
 
 func _on_btn_track_4_pressed() -> void:
+	AudioManager.play_click_audio()
 	set_track(3)
 	current_track = 3
 
-
 func _on_try_again_btn_pressed() -> void:
+	AudioManager.play_click_audio()
 	set_track(current_track)
 	goal_container.visible = false
 
 func _on_track_selection_btn_pressed() -> void:
+	AudioManager.play_click_audio()
 	goal_container.visible = false
 	level_selection.visible = true
 
 func _on_change_vehicle_btn_pressed() -> void:
+	AudioManager.play_click_audio()
 	goal_container.visible = false
 	car_design.visible = true
 	level_selection.visible = true
 
 func _on_quit_game_btn_pressed() -> void:
+	AudioManager.play_click_audio()
 	game_manager.quit_game()

@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://jnrhsk2n7l22"]
+
+[ext_resource type="Script" uid="uid://bxn883t7x2q88" path="res://resources/audio_manager.gd" id="1_jpefx"]
+[ext_resource type="PackedScene" uid="uid://dvtdmyv1ab6e" path="res://resources/audio_one_shot.tscn" id="2_75h64"]
+[ext_resource type="AudioStream" uid="uid://c824ou71q8po4" path="res://audio/music/06-You Can Do It-Full-SM494.mp3" id="2_gwhvk"]
+[ext_resource type="AudioStream" uid="uid://ckcv43lq6n0qt" path="res://audio/sfx/click_snd.mp3" id="3_lnto7"]
+
+[node name="AudioManager" type="Node" node_paths=PackedStringArray("clips", "one_shots")]
+process_mode = 3
+script = ExtResource("1_jpefx")
+clips = NodePath("clips")
+one_shots = NodePath("audio_one_shots")
+audio_one_shot_scene = ExtResource("2_75h64")
+click_audio = ExtResource("3_lnto7")
+
+[node name="clips" type="Node" parent="."]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="clips"]
+stream = ExtResource("2_gwhvk")
+volume_db = -15.0
+autoplay = true
+parameters/looping = true
+
+[node name="audio_one_shots" type="Node" parent="."]

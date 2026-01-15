@@ -18,14 +18,11 @@ extends VehicleBody3D
 
 @onready var game_manager: GameManager = get_node("/root/main/GameManager")
 
-
-
 func _ready() -> void:
 	can_drive = true
 
-
 func _physics_process(delta: float) -> void:
-	is_on_road()
+	#is_on_road()
 	if Input.is_action_just_pressed("reset_car"):
 		reset_to_road()
 	steering = move_toward(

@@ -27,6 +27,7 @@ func _ready() -> void:
 	freeze_player()
 	user_interface.visible = false
 	player.visible = false
+	AudioManager.play("BackgroundMusic")
 
 func start_new_game() -> void:
 	player.visible = true
@@ -143,9 +144,11 @@ func format_time(seconds: float) -> String:
 	return "%02d:%02d:%02d" % [mins, secs, hundredths]
 
 func quit_game() -> void:
+	AudioManager.play_click_audio()
 	get_tree().quit()
 
 func _on_start_game_btn_pressed() -> void:
+	AudioManager.play_click_audio()
 	init_canvas.visible = false
 	init_cam.current = false
 	init_cam.visible = false

@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 BestTimes="*res://resources/best_times.gd"
+AudioManager="*res://resources/audio_manager.tscn"
 
 [display]
 

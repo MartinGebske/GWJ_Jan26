@@ -25,8 +25,10 @@ var player_is_in_goal := false
 func _ready() -> void:
 	freeze_player()
 	user_interface.visible = false
+	player.visible = false
 
 func start_new_game() -> void:
+	player.visible = true
 	var config = active_car_config
 	player.apply_config(config)
 	player.apply_wheels(config)

@@ -13,6 +13,8 @@ var chassis_assebled = false
 var wheels_assembled = false
 var steering_assembled = false
 
+@onready var game_manager: GameManager = get_node("/root/main/GameManager")
+
 # Container and responsive UI Buttons
 @onready var rounds_container: GridContainer = $background/MarginContainer/VBoxContainer/HBoxContainer/Rounds_Container
 @onready var chassis_container: GridContainer = $background/MarginContainer/VBoxContainer/HBoxContainer/Chassis_Container
@@ -77,10 +79,7 @@ func _on_steering_btn_pressed() -> void:
 # ROUNDS:
 func _on_paper_btn_pressed() -> void:
 	if current_category == category_selected.STEERING:
-		for w in wheelholder.get_children():
-			w.hide()
-			if w.name == "toiletpaper":
-				w.show()
+		game_manager.active_car_config.steering_type = CarConfig.SteeringType.TOILETPAPER
 		steering_assembled = true
 
 	if current_category == category_selected.WHEELS:
@@ -89,10 +88,7 @@ func _on_paper_btn_pressed() -> void:
 
 func _on_pizza_btn_pressed() -> void:
 	if current_category == category_selected.STEERING:
-		for w in wheelholder.get_children():
-			w.hide()
-			if w.name == "pizza":
-				w.show()
+		game_manager.active_car_config.steering_type = CarConfig.SteeringType.PIZZA
 		steering_assembled = true
 
 	if current_category == category_selected.WHEELS:
@@ -101,10 +97,7 @@ func _on_pizza_btn_pressed() -> void:
 
 func _on_lid_btn_pressed() -> void:
 	if current_category == category_selected.STEERING:
-		for w in wheelholder.get_children():
-			w.hide()
-			if w.name == "lid":
-				w.show()
+		game_manager.active_car_config.steering_type = CarConfig.SteeringType.LID
 		steering_assembled = true
 
 	if current_category == category_selected.WHEELS:
@@ -116,30 +109,21 @@ func _on_lid_btn_pressed() -> void:
 
 func _on_bathtub_btn_pressed() -> void:
 	if current_category == category_selected.CHASSIS:
-		for c in chassisbase.get_children():
-			c.hide()
-			if c.name == "bathtub":
-				c.show()
+		game_manager.active_car_config.chassis_type = CarConfig.ChassisType.BATHTUB
 		chassis_assebled = true
 	check_for_assembly_comlete()
 
 
 func _on_mattress_btn_pressed() -> void:
 	if current_category == category_selected.CHASSIS:
-		for c in chassisbase.get_children():
-			c.hide()
-			if c.name == "mattress":
-				c.show()
+		game_manager.active_car_config.chassis_type = CarConfig.ChassisType.MATTRESS
 		chassis_assebled = true
 	check_for_assembly_comlete()
 
 
 func _on_table_btn_pressed() -> void:
 	if current_category == category_selected.CHASSIS:
-		for c in chassisbase.get_children():
-			c.hide()
-			if c.name == "table":
-				c.show()
+		game_manager.active_car_config.chassis_type = CarConfig.ChassisType.TABLE
 		chassis_assebled = true
 	check_for_assembly_comlete()
 

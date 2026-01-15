@@ -8,13 +8,12 @@ extends Control
 
 
 func _ready() -> void:
-	prompt_label.text = ""
+	set_prompt_label("")
 	level_selection.visible = true
 
 func set_track(track: int) -> void:
 	game_manager.initialize(track)
 	level_selection.visible = false
-
 
 func finish_race() -> void:
 	prompt_label.text = "FINISH!"
@@ -22,6 +21,9 @@ func finish_race() -> void:
 	set_countdown_label("")
 	time_label.text = ""
 	level_selection.visible = true
+
+func set_prompt_label(t: String) -> void:
+	prompt_label.text = t
 
 func set_countdown_label(t: String) -> void:
 	prompt_label.text = t

@@ -1,5 +1,7 @@
 extends VehicleBody3D
 
+@export var user_interface = Control
+
 @export var max_steering_angle := 0.9
 @export var steering_speed := 10
 @export var engine_power := 300
@@ -10,11 +12,15 @@ extends VehicleBody3D
 @export var reset_counter := 3.0
 
 @onready var wheelholder: Node3D = $SteeringwheelBase/Wheelholder
+@onready var chassis_base: Node3D = $ChassisBase
 
 @onready var game_manager: GameManager = get_node("/root/main/GameManager")
 
+
+
 func _ready() -> void:
 	can_drive = true
+
 
 func _physics_process(delta: float) -> void:
 	is_on_road()
@@ -65,9 +71,10 @@ func is_on_road() -> bool:
 	var hit = result.size() > 0
 	return hit
 
+
 func is_upside_down() -> bool:
 	return transform.basis.y.dot(Vector3.UP) < 0.3
-	start_reset_countdown(2.0)
+
 
 
 func start_reset_countdown(time : float) -> void:
@@ -123,3 +130,32 @@ func reset_to_road():
 	# Reset Physics
 	linear_velocity = Vector3.ZERO
 	angular_velocity = Vector3.ZERO
+
+
+
+# CAR CONFIG
+
+func apply_config(config: CarConfig):
+	# Chassis
+	for c in chassis_base.get_children():
+		c.hide()
+
+	match config.chassis_type:
+		CarConfig.ChassisType.BATHTUB:
+			chassis_base.get_node("bathtub").show()
+		CarConfig.ChassisType.MATTRESS:
+			chassis_base.get_node("mattress").show()
+		CarConfig.ChassisType.TABLE:
+			chassis_base.get_node("table").show()
+
+	# Steering
+	for w in wheelholder.get_children():
+		w.hide()
+
+	match config.steering_type:
+		CarConfig.SteeringType.TOILETPAPER:
+			wheelholder.get_node("toiletpaper").show()
+		CarConfig.SteeringType.PIZZA:
+			wheelholder.get_node("pizza").show()
+		CarConfig.SteeringType.LID:
+			wheelholder.get_node("lid").show()

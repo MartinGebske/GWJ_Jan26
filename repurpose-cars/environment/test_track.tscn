@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://bh43jilfdc0d0"]
+[gd_scene load_steps=18 format=3 uid="uid://bh43jilfdc0d0"]
 
 [ext_resource type="Script" uid="uid://dej5ba1g460ei" path="res://environment/game_manager.gd" id="1_qtquq"]
+[ext_resource type="Script" uid="uid://dvjpi7mha2lrm" path="res://resources/car_config.gd" id="2_8crpl"]
 [ext_resource type="Texture2D" uid="uid://dlwb8skrm3dh0" path="res://environment/alps_field_4k.hdr" id="2_f8sje"]
 [ext_resource type="VoxelGIData" uid="uid://b65f6bxrqwwhx" path="res://environment/GI data/test_track.VoxelGI_data.res" id="2_mutpj"]
 [ext_resource type="PackedScene" uid="uid://dp1vvehbwnvha" path="res://car/car_base.tscn" id="3_f7782"]
@@ -10,6 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://t5dkeas6w6wp" path="res://environment/props/start_finish/start_finish.glb" id="7_f7782"]
 [ext_resource type="PackedScene" uid="uid://bg43wrbx8mt4r" path="res://ui/user_interface.tscn" id="7_gep4w"]
 [ext_resource type="Texture2D" uid="uid://8s7cqc36d3jy" path="res://environment/props/start_finish/StartFinish_diff.png" id="8_f8sje"]
+
+[sub_resource type="Resource" id="Resource_k3nx4"]
+script = ExtResource("2_8crpl")
+metadata/_custom_type_script = "uid://dvjpi7mha2lrm"
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_8crpl"]
 panorama = ExtResource("2_f8sje")
@@ -45,6 +50,7 @@ player = NodePath("../CarBase")
 user_interface = NodePath("../user_interface")
 tracks = [NodePath("../props/track_1"), NodePath("../props/track_2"), NodePath("../props/track_3"), NodePath("../props/track_4")]
 track_starting_points = [NodePath("../level/StartTrack_1"), NodePath("../level/StartTrack_2"), NodePath("../level/StartTrack_3"), NodePath("../level/StartTrack_4")]
+active_car_config = SubResource("Resource_k3nx4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.898228, -0.43301278, -0.07540873, -0.3089583, 0.49999997, 0.8090395, -0.31262004, 0.75, -0.5828968, 0, 0, 0)
@@ -60,9 +66,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4650269, 74.87033, 2.22857
 size = Vector3(510.3297, 159.1672, 511.60583)
 data = ExtResource("2_mutpj")
 
-[node name="CarBase" parent="." instance=ExtResource("3_f7782")]
+[node name="CarBase" parent="." node_paths=PackedStringArray("user_interface") instance=ExtResource("3_f7782")]
 transform = Transform3D(-0.72131336, 0.19591498, 0.6643226, -0.36432725, 0.708411, -0.6044996, -0.58904386, -0.6780643, -0.4396093, -158.25111, 66.18446, 184.69017)
 mass = 400.0
+user_interface = NodePath("../user_interface")
 engine_power = 8000
 
 [node name="level" parent="." instance=ExtResource("4_f8sje")]

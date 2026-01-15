@@ -5,6 +5,8 @@ class_name GameManager
 @export var user_interface : Control
 @export var tracks : Array[Node3D]
 @export var track_starting_points : Array[Node3D]
+@export var active_car_config: CarConfig
+
 
 var current_track:
 	set(value):
@@ -20,8 +22,9 @@ var player_is_in_goal := false
 func _ready() -> void:
 	freeze_player()
 
-
 func start_new_game() -> void:
+	var config = active_car_config
+	player.apply_config(config)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	user_interface.set_laptime_label(str("TIme: 00:00:00"))
 

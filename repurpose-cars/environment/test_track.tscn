@@ -30,11 +30,20 @@ sky_material = SubResource("PanoramaSkyMaterial_8crpl")
 background_mode = 2
 sky = SubResource("Sky_4ym64")
 tonemap_mode = 2
+ssao_enabled = true
+ssao_radius = 2.21
+ssao_intensity = 2.88
 glow_enabled = true
+glow_normalized = true
 glow_intensity = 0.46
 glow_strength = 0.44
 glow_bloom = 0.5
 glow_blend_mode = 0
+fog_height = -292.57
+volumetric_fog_density = 0.0
+adjustment_enabled = true
+adjustment_brightness = 1.16
+adjustment_contrast = 1.08
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8crpl"]
 cull_mode = 2
@@ -743,6 +752,7 @@ current = true
 
 [editable path="level"]
 [editable path="level/worldmesh"]
+[editable path="level/grassbunch"]
 [editable path="props/track_1/startLine"]
 [editable path="props/track_1/finishLine"]
 [editable path="props/track_2/startLine"]

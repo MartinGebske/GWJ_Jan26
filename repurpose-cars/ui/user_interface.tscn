@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bg43wrbx8mt4r"]
+[gd_scene load_steps=45 format=3 uid="uid://bg43wrbx8mt4r"]
 
 [ext_resource type="FontFile" uid="uid://c30oepfxnaieu" path="res://ui/fonts/Slackey-Regular.ttf" id="1_mm06q"]
 [ext_resource type="Script" uid="uid://b8pm7cd54gfrl" path="res://ui/user_interface.gd" id="1_ue2kl"]
@@ -26,6 +26,18 @@
 [ext_resource type="Texture2D" uid="uid://ds1hoqqsmjnl" path="res://ui/assets/icons/icon_table_hover.png" id="22_q5828"]
 [ext_resource type="Texture2D" uid="uid://dlwb8skrm3dh0" path="res://environment/alps_field_4k.hdr" id="23_n3id3"]
 [ext_resource type="PackedScene" uid="uid://dp1vvehbwnvha" path="res://car/car_base.tscn" id="24_s8nei"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t6vlk"]
+bg_color = Color(0.5449209, 0.5449209, 0.5449209, 0)
+draw_center = false
+border_width_left = 50
+border_width_top = 50
+border_width_right = 50
+border_width_bottom = 50
+border_color = Color(0, 0, 0, 0.08800001)
+border_blend = true
+corner_detail = 1
+shadow_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_ue2kl"]
 font = ExtResource("1_mm06q")
@@ -124,6 +136,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ue2kl")
+
+[node name="Vigniette" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Vigniette"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t6vlk")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -269,7 +293,6 @@ text = "Mount Unnecessary Peril"
 icon_alignment = 1
 
 [node name="car_design" type="MarginContainer" parent="." node_paths=PackedStringArray("car")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -340,7 +363,7 @@ world_3d = SubResource("World3D_vhcft")
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1000, 800)
-render_target_update_mode = 0
+render_target_update_mode = 4
 
 [node name="CarBase" parent="car_design/background/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/BoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("24_s8nei")]
 process_mode = 4
@@ -458,7 +481,6 @@ theme_override_font_sizes/font_size = 32
 text = "Ready"
 
 [node name="GoalContainer" type="MarginContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bh43jilfdc0d0"]
+[gd_scene load_steps=27 format=3 uid="uid://bh43jilfdc0d0"]
 
 [ext_resource type="Script" uid="uid://dej5ba1g460ei" path="res://environment/game_manager.gd" id="1_qtquq"]
 [ext_resource type="Script" uid="uid://dvjpi7mha2lrm" path="res://resources/car_config.gd" id="2_8crpl"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bg43wrbx8mt4r" path="res://ui/user_interface.tscn" id="7_gep4w"]
 [ext_resource type="Texture2D" uid="uid://8s7cqc36d3jy" path="res://environment/props/start_finish/StartFinish_diff.png" id="8_f8sje"]
 [ext_resource type="FontFile" uid="uid://c30oepfxnaieu" path="res://ui/fonts/Slackey-Regular.ttf" id="12_k3nx4"]
+[ext_resource type="Script" uid="uid://c03dks0xorb2" path="res://environment/init_canvas.gd" id="13_dqoy7"]
 [ext_resource type="Script" uid="uid://dhp0umrg3ymlj" path="res://environment/path_follow_3d.gd" id="13_gep4w"]
 
 [sub_resource type="Resource" id="Resource_k3nx4"]
@@ -54,6 +55,14 @@ albedo_texture = ExtResource("8_f8sje")
 cull_mode = 2
 albedo_texture = ExtResource("8_f8sje")
 uv1_offset = Vector3(0, 0.5, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_so2s8"]
+font = ExtResource("12_k3nx4")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_dqoy7"]
+font = ExtResource("12_k3nx4")
+font_size = 40
 
 [sub_resource type="LabelSettings" id="LabelSettings_gep4w"]
 font = ExtResource("12_k3nx4")
@@ -657,7 +666,6 @@ transform = Transform3D(-0.5347235, -0.49379182, -0.68574095, 0.14940481, 0.7434
 material_override = SubResource("StandardMaterial3D_k3nx4")
 
 [node name="user_interface" parent="." instance=ExtResource("7_gep4w")]
-visible = false
 
 [node name="Init_Canvas" type="Control" parent="."]
 layout_mode = 3
@@ -666,6 +674,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("13_dqoy7")
 
 [node name="Welcome Screen" type="MarginContainer" parent="Init_Canvas"]
 layout_mode = 1
@@ -683,28 +692,72 @@ theme_override_constants/margin_bottom = 200
 layout_mode = 2
 theme_override_constants/margin_top = 0
 
-[node name="Panel" type="Panel" parent="Init_Canvas/Welcome Screen/MarginContainer"]
+[node name="HowToPlayPanel" type="Panel" parent="Init_Canvas/Welcome Screen/MarginContainer"]
 visible = false
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Init_Canvas/Welcome Screen/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Init_Canvas/Welcome Screen/MarginContainer/HowToPlayPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Init_Canvas/Welcome Screen/MarginContainer/HowToPlayPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Label" type="Label" parent="Init_Canvas/Welcome Screen/MarginContainer/HowToPlayPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "How to Play"
+label_settings = SubResource("LabelSettings_so2s8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Init_Canvas/Welcome Screen/MarginContainer/HowToPlayPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Use
+W
+A
+S
+D
+Keys (as usual)
+
+R will reset the vehicle (hopefully)"
+label_settings = SubResource("LabelSettings_dqoy7")
+horizontal_alignment = 1
+
+[node name="BackBtn" type="Button" parent="Init_Canvas/Welcome Screen/MarginContainer/HowToPlayPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("12_k3nx4")
+theme_override_font_sizes/font_size = 32
+text = "Back"
+
+[node name="WelcomeScreen" type="VBoxContainer" parent="Init_Canvas/Welcome Screen/MarginContainer"]
 layout_mode = 2
 
-[node name="Headline" type="Label" parent="Init_Canvas/Welcome Screen/MarginContainer/VBoxContainer"]
+[node name="Headline" type="Label" parent="Init_Canvas/Welcome Screen/MarginContainer/WelcomeScreen"]
 layout_mode = 2
 text = "FRANKENRIDE"
 label_settings = SubResource("LabelSettings_gep4w")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="Init_Canvas/Welcome Screen/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Init_Canvas/Welcome Screen/MarginContainer/WelcomeScreen"]
 custom_minimum_size = Vector2(1000, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 200
 theme_override_styles/separator = SubResource("StyleBoxLine_so2s8")
 
-[node name="StartGame_Btn" type="Button" parent="Init_Canvas/Welcome Screen/MarginContainer/VBoxContainer"]
+[node name="StartGame_Btn" type="Button" parent="Init_Canvas/Welcome Screen/MarginContainer/WelcomeScreen"]
 custom_minimum_size = Vector2(500, 80)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -713,16 +766,16 @@ theme_override_fonts/font = ExtResource("12_k3nx4")
 theme_override_font_sizes/font_size = 32
 text = "Start Game"
 
-[node name="Credits_Btn" type="Button" parent="Init_Canvas/Welcome Screen/MarginContainer/VBoxContainer"]
+[node name="How_Btn" type="Button" parent="Init_Canvas/Welcome Screen/MarginContainer/WelcomeScreen"]
 custom_minimum_size = Vector2(500, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_fonts/font = ExtResource("12_k3nx4")
 theme_override_font_sizes/font_size = 32
-text = "Credits"
+text = "How to play"
 
-[node name="QuitGame_Btn" type="Button" parent="Init_Canvas/Welcome Screen/MarginContainer/VBoxContainer"]
+[node name="QuitGame_Btn" type="Button" parent="Init_Canvas/Welcome Screen/MarginContainer/WelcomeScreen"]
 custom_minimum_size = Vector2(500, 80)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -748,8 +801,10 @@ current = true
 
 [node name="target" type="Node3D" parent="."]
 
-[connection signal="pressed" from="Init_Canvas/Welcome Screen/MarginContainer/VBoxContainer/StartGame_Btn" to="GameManager" method="_on_start_game_btn_pressed"]
-[connection signal="pressed" from="Init_Canvas/Welcome Screen/MarginContainer/VBoxContainer/QuitGame_Btn" to="GameManager" method="quit_game"]
+[connection signal="pressed" from="Init_Canvas/Welcome Screen/MarginContainer/HowToPlayPanel/MarginContainer/VBoxContainer/BackBtn" to="Init_Canvas" method="_on_back_btn_pressed"]
+[connection signal="pressed" from="Init_Canvas/Welcome Screen/MarginContainer/WelcomeScreen/StartGame_Btn" to="GameManager" method="_on_start_game_btn_pressed"]
+[connection signal="pressed" from="Init_Canvas/Welcome Screen/MarginContainer/WelcomeScreen/How_Btn" to="Init_Canvas" method="_on_how_btn_pressed"]
+[connection signal="pressed" from="Init_Canvas/Welcome Screen/MarginContainer/WelcomeScreen/QuitGame_Btn" to="GameManager" method="quit_game"]
 
 [editable path="level"]
 [editable path="level/worldmesh"]

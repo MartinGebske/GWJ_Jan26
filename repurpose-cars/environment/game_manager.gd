@@ -86,6 +86,7 @@ func player_in_goal() -> void:
 		return
 	if not is_racing:
 		return
+	player.reached_goal()
 	anim_player.play("turntable")
 	freeze_player()
 	is_racing = false

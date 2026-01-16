@@ -9,12 +9,20 @@ extends VehicleBody3D
 @export var max_speed := 20.0
 @export var can_drive := true
 
+@export var start_sound = AudioStream
+@export var end_sound = AudioStream
+@export var min_pitch := 0.8
+@export var max_pitch := 2.2
+var engine_running := false
+
 @export var reset_counter := 3.0
 
 @export var wheel_scenes : Array[PackedScene]
 
 @onready var wheelholder: Node3D = $SteeringwheelBase/Wheelholder
 @onready var chassis_base: Node3D = $ChassisBase
+@onready var engine_sound: AudioStreamPlayer3D = $EngineSound
+
 
 @onready var game_manager: GameManager = get_node("/root/main/GameManager")
 
@@ -47,13 +55,49 @@ func _physics_process(delta: float) -> void:
 	var current_speed = linear_velocity.length()
 	if current_speed > max_speed:
 		linear_velocity = linear_velocity.normalized() * max_speed
+	update_engine_audio()
 
 func get_ready() -> void:
 	if not game_manager.player_is_in_goal:
 		if game_manager:
 			game_manager.run_countdown()
+			start_engine()
 		else:
 			return
+
+func reached_goal() -> void:
+	stop_engine()
+
+func update_engine_audio() -> void:
+	if not engine_running:
+		return
+
+	var speed := linear_velocity.length()
+	var t: float = clamp(speed / max_speed, 0.0, 1.0)
+	engine_sound.pitch_scale = lerp(min_pitch, max_pitch, t)
+
+
+func start_engine():
+	if engine_running:
+		return
+
+	engine_running = true
+	var one_shot = AudioManager.play_audio_one_shot(start_sound)
+	one_shot.finished.connect(_on_engine_start_finished)
+
+
+func _on_engine_start_finished():
+	engine_sound.play()
+
+func stop_engine():
+	if not engine_running:
+		return
+
+	engine_running = false
+	engine_sound.stop()
+	AudioManager.play_audio_one_shot(end_sound)
+
+
 
 # MANAGE CAR ON ROAD
 

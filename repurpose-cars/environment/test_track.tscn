@@ -71,7 +71,7 @@ user_interface = NodePath("../user_interface")
 tracks = [NodePath("../props/track_1"), NodePath("../props/track_2"), NodePath("../props/track_3"), NodePath("../props/track_4")]
 track_starting_points = [NodePath("../level/StartTrack_1"), NodePath("../level/StartTrack_2"), NodePath("../level/StartTrack_3"), NodePath("../level/StartTrack_4")]
 active_car_config = SubResource("Resource_k3nx4")
-goals = [NodePath("../props/track_1/Goal"), NodePath("../props/track_2/Goal"), NodePath("../props/track_3/Goal"), NodePath("../props/track_4/Goal")]
+goals = [null, null, null, null]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.898228, -0.43301278, -0.07540873, -0.3089583, 0.49999997, 0.8090395, -0.31262004, 0.75, -0.5828968, 0, 0, 0)

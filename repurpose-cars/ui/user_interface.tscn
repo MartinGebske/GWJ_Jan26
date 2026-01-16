@@ -202,15 +202,16 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 801.0
+offset_left = 768.695
 offset_top = 108.0
-offset_right = -423.0
+offset_right = -383.305
 offset_bottom = -630.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "Track 1"
+theme_override_fonts/font = ExtResource("1_mm06q")
+text = "Simple Summit"
 icon_alignment = 1
 
 [node name="Btn_Track2" type="Button" parent="level_selection/VBoxContainer/MarginContainer/map"]
@@ -221,13 +222,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 999.0
 offset_top = 193.0
-offset_right = -225.0
+offset_right = -153.0
 offset_bottom = -545.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "Track 2"
+theme_override_fonts/font = ExtResource("1_mm06q")
+text = "Mount Meh"
 icon_alignment = 1
 
 [node name="Btn_Track3" type="Button" parent="level_selection/VBoxContainer/MarginContainer/map"]
@@ -236,15 +238,16 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 260.0
+offset_left = 249.5
 offset_top = 513.0
-offset_right = -964.0
+offset_right = -902.5
 offset_bottom = -225.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "Track 3"
+theme_override_fonts/font = ExtResource("1_mm06q")
+text = "Peak Expectations"
 icon_alignment = 1
 
 [node name="Btn_Track4" type="Button" parent="level_selection/VBoxContainer/MarginContainer/map"]
@@ -253,15 +256,16 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 445.0
+offset_left = 408.0
 offset_top = 23.0
-offset_right = -779.0
+offset_right = -734.0
 offset_bottom = -715.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "Track 4"
+theme_override_fonts/font = ExtResource("1_mm06q")
+text = "Mount Unnecessary Peril"
 icon_alignment = 1
 
 [node name="car_design" type="MarginContainer" parent="." node_paths=PackedStringArray("car")]

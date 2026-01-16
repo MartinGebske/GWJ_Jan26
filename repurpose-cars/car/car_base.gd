@@ -23,6 +23,7 @@ var engine_running := false
 @onready var chassis_base: Node3D = $ChassisBase
 @onready var engine_sound: AudioStreamPlayer3D = $EngineSound
 
+var flipped := false
 
 @onready var game_manager: GameManager = get_node("/root/main/GameManager")
 
@@ -30,9 +31,19 @@ func _ready() -> void:
 	can_drive = true
 
 func _physics_process(delta: float) -> void:
-	#is_on_road()
+	# Check if car is upside down
+	if is_upside_down():
+		if not flipped:
+			flipped = true
+			user_interface.set_prompt_label("Flip Vehicle! (R)")
+	else:
+		flipped = false
+
 	if Input.is_action_just_pressed("reset_car"):
 		reset_to_road()
+		flipped = false
+		user_interface.set_prompt_label("")
+
 	steering = move_toward(
 		steering,
 		Input.get_axis("right", "left") * max_steering_angle,
@@ -116,7 +127,9 @@ func is_on_road() -> bool:
 
 
 func is_upside_down() -> bool:
-	return transform.basis.y.dot(Vector3.UP) < 0.3
+	return transform.basis.y.y < -0.7
+
+
 
 
 
@@ -156,23 +169,31 @@ func reset_to_road():
 		return
 
 	var pos: Vector3 = hit.position
-	var normal: Vector3 = hit.normal
+	var up: Vector3 = hit.normal.normalized()
 
-	# Adjust Up-Vektor on Road Normal
-	var up = normal
+	# Forward aus aktueller Ausrichtung
 	var forward = -global_transform.basis.z
 
-	# Project correct direction of car
+	# Wenn forward nach oben/unten zeigt → invertieren
+	if forward.dot(up) > 0:
+		forward = -forward
+
+	# Forward auf die Ebene projizieren
 	forward = (forward - forward.project(up)).normalized()
 
-	var basis = Basis()
-	basis = basis.looking_at(forward, up)
+	# Neue Basis
+	var basis = Basis().looking_at(forward, up)
 
-	global_transform = Transform3D(basis, pos + up * 0.5)
-
-	# Reset Physics
+	# Physik kurz einfrieren
+	freeze = true
+	global_transform = Transform3D(basis, pos + up * 1.0)
 	linear_velocity = Vector3.ZERO
 	angular_velocity = Vector3.ZERO
+
+	await get_tree().process_frame
+	freeze = false
+
+
 
 
 

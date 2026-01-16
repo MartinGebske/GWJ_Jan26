@@ -47,7 +47,11 @@ _subresources={
 },
 "nodes": {
 "PATH:Pizza": {
-"generate/physics": true
+"generate/physics": true,
+"physics/physics_material_override": Object(PhysicsMaterial,"resource_local_to_scene":false,"resource_name":"","friction":0.1,"rough":false,"bounce":0.0,"absorbent":false,"script":null)
+,
+"physics/shape_type": 4,
+"primitive/radius": 0.5
 }
 }
 }

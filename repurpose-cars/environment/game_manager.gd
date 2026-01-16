@@ -100,7 +100,7 @@ func player_in_goal() -> void:
 	var best_time = get_best_time("track_" + str((current_track + 1)))
 	if best_time > 0.0:
 		user_interface.set_highscore_label(str(format_time(best_time)))
-		AudioManager.play_audio_one_shot(cheer_sound)
+		AudioManager.play_audio_one_shot(cheer_sound,-15.0)
 
 func get_best_time(track_id: String) -> float:
 	return BestTimes.get_best_time(track_id)

@@ -1,6 +1,6 @@
 extends Node
 
-const SAVE_PATH := "user://best_times.json"
+const SAVE_PATH := "best_times.json"
 
 var best_times := {
 	"track_1": INF,

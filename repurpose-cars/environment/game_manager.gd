@@ -7,6 +7,7 @@ class_name GameManager
 @export var track_starting_points : Array[Node3D]
 @export var active_car_config: CarConfig
 @export var goals : Array[Area3D]
+@export var cheer_sound = AudioStream
 
 var current_track:
 	set(value):
@@ -99,6 +100,7 @@ func player_in_goal() -> void:
 	var best_time = get_best_time("track_" + str((current_track + 1)))
 	if best_time > 0.0:
 		user_interface.set_highscore_label(str(format_time(best_time)))
+		AudioManager.play_audio_one_shot(cheer_sound)
 
 func get_best_time(track_id: String) -> float:
 	return BestTimes.get_best_time(track_id)

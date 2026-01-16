@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://bh43jilfdc0d0"]
+[gd_scene load_steps=24 format=3 uid="uid://bh43jilfdc0d0"]
 
 [ext_resource type="Script" uid="uid://dej5ba1g460ei" path="res://environment/game_manager.gd" id="1_qtquq"]
 [ext_resource type="Script" uid="uid://dvjpi7mha2lrm" path="res://resources/car_config.gd" id="2_8crpl"]
 [ext_resource type="Texture2D" uid="uid://dlwb8skrm3dh0" path="res://environment/alps_field_4k.hdr" id="2_f8sje"]
 [ext_resource type="VoxelGIData" uid="uid://b65f6bxrqwwhx" path="res://environment/GI data/test_track.VoxelGI_data.res" id="2_mutpj"]
 [ext_resource type="PackedScene" uid="uid://dp1vvehbwnvha" path="res://car/car_base.tscn" id="3_f7782"]
+[ext_resource type="AudioStream" uid="uid://bbhcyjlge0rs7" path="res://audio/sfx/Cheer-Applause-Exterior-Small_GEN-HD2-28869.mp3" id="3_so2s8"]
 [ext_resource type="PackedScene" uid="uid://bjyqu2rl8ctpv" path="res://environment/level.tscn" id="4_f8sje"]
 [ext_resource type="PackedScene" uid="uid://b4bumce36njyx" path="res://environment/props/straw/straw.glb" id="5_8crpl"]
 [ext_resource type="PackedScene" uid="uid://cliyfl7maldpi" path="res://environment/goal.tscn" id="6_k3nx4"]
@@ -71,7 +72,8 @@ user_interface = NodePath("../user_interface")
 tracks = [NodePath("../props/track_1"), NodePath("../props/track_2"), NodePath("../props/track_3"), NodePath("../props/track_4")]
 track_starting_points = [NodePath("../level/StartTrack_1"), NodePath("../level/StartTrack_2"), NodePath("../level/StartTrack_3"), NodePath("../level/StartTrack_4")]
 active_car_config = SubResource("Resource_k3nx4")
-goals = [null, null, null, null]
+goals = [NodePath("../props/track_1/Goal"), NodePath("../props/track_2/Goal"), NodePath("../props/track_3/Goal"), NodePath("../props/track_4/Goal")]
+cheer_sound = ExtResource("3_so2s8")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.898228, -0.43301278, -0.07540873, -0.3089583, 0.49999997, 0.8090395, -0.31262004, 0.75, -0.5828968, 0, 0, 0)

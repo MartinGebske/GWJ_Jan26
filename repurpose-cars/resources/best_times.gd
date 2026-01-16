@@ -11,6 +11,7 @@ var best_times := {
 
 func _ready():
 	load_times()
+	print(ProjectSettings.globalize_path(SAVE_PATH))
 
 func check_time(track_id: String, new_time: float) -> bool:
 	var old_time = best_times.get(track_id, INF)

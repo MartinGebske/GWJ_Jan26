@@ -269,6 +269,7 @@ text = "Mount Unnecessary Peril"
 icon_alignment = 1
 
 [node name="car_design" type="MarginContainer" parent="." node_paths=PackedStringArray("car")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -339,7 +340,7 @@ world_3d = SubResource("World3D_vhcft")
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1000, 800)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="CarBase" parent="car_design/background/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/BoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("24_s8nei")]
 process_mode = 4
@@ -457,6 +458,7 @@ theme_override_font_sizes/font_size = 32
 text = "Ready"
 
 [node name="GoalContainer" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
